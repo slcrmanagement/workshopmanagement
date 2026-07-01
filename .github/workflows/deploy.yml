@@ -38,10 +38,6 @@ jobs:
           # Leave empty ('') if using a custom domain or org root site.
           NEXT_PUBLIC_BASE_PATH: /workshopmanagement
 
-      - name: Copy data folder into out/
-        # Makes registration JSON accessible at /workshopmanagement/data/…
-        run: cp -r data out/data
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
