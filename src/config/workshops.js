@@ -1,10 +1,12 @@
 /**
  * Central workshop registry.
- * To add a new workshop:
- *  1. Add a new entry to this array.
- *  2. Create  data/<id>/registrations.json  with participant data.
- *  3. Set feedbackEndpoint to your Google Apps Script web-app URL (or Formspree/etc).
- *  4. npm run build  →  site auto-includes the new workshop.
+ *
+ * TO ADD A NEW WORKSHOP:
+ *  1. Copy the object below and paste it after the comment at the bottom.
+ *  2. Create  data/<id>/registrations.json  with participant rows.
+ *  3. Fill in googleRegistrationFormUrl, feedbackGoogleFormUrl, googleSheetId if you have them.
+ *  4. Set feedbackEndpoint to a Google Apps Script URL or Formspree URL to collect feedback.
+ *  5. npm run build  →  GitHub Actions deploys automatically.
  */
 
 export const workshops = [
@@ -13,11 +15,12 @@ export const workshops = [
     title: 'SCALGO Live Workshop 2026',
     shortTitle: 'SCALGO Live 2026',
 
-    // Display dates
+    // ── Dates ─────────────────────────────────────────────────────────────
     date: '2026-06-25',
     displayDate: '25 June 2026',
     registrationDeadline: '2026-06-20',
 
+    // ── Location & organiser ──────────────────────────────────────────────
     venue: 'Seminar Hall, Department of Civil Engineering, IIT (BHU), Varanasi',
     organizer: 'Smart Laboratory on Clean Rivers (SLCR)',
     organizerFull:
@@ -28,23 +31,27 @@ export const workshops = [
 
     tags: ['Water Resources', 'GIS', 'Urban Planning', 'Drainage', 'Environment', 'Disaster Management'],
 
-    // Registration state
+    // ── State flags ───────────────────────────────────────────────────────
     registrationOpen: false,
     feedbackOpen: true,
 
-    // Path relative to /data directory (used at build time + client-side fetch)
+    // ── Google integration (fill in when available) ───────────────────────
+    googleRegistrationFormUrl: '', // Google Form URL used for registration
+    feedbackGoogleFormUrl: '',     // Google Form URL for feedback (alternate channel)
+    googleSheetId: '',             // Sheet ID of the registration responses spreadsheet
+
+    // ── Local data file ───────────────────────────────────────────────────
+    // Path relative to /data/ directory — served as static JSON by GitHub Pages
     dataFile: 'scalgo-live-2026/registrations.json',
 
-    /**
-     * Where to POST feedback submissions.
-     * Options:
-     *  - Google Apps Script: deploy a script as web app and paste the URL here.
-     *  - Formspree: https://formspree.io/f/<id>
-     *  - Leave empty ('') to skip submission (certificate still generates).
-     */
+    // ── Feedback submission endpoint ──────────────────────────────────────
+    // POST target for feedback JSON. Options:
+    //   Google Apps Script web app URL   →  deploy script as web app, paste URL here
+    //   Formspree                        →  https://formspree.io/f/<id>
+    //   Leave '' to skip (certificate still generates)
     feedbackEndpoint: '',
 
-    // Certificate configuration
+    // ── Certificate ───────────────────────────────────────────────────────
     certificate: {
       title: 'Certificate of Participation',
       eventName: 'SCALGO Live Workshop 2026',
@@ -57,7 +64,7 @@ export const workshops = [
           title: 'SLCR, IIT (BHU) Varanasi',
         },
       ],
-      // Prefix used for certificate serial numbers: PREFIX-001, PREFIX-002 …
+      // Prefix for serial numbers → SLCR-SCALGO26-001, -002 …
       serialPrefix: 'SLCR-SCALGO26',
     },
   },

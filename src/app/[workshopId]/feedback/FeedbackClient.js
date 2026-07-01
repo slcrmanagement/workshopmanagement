@@ -1,59 +1,100 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Star, CheckCircle2, Download, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import CertificatePreview from '@/components/CertificatePreview';
 
 const STEPS = { EMAIL: 'email', FEEDBACK: 'feedback', CERTIFICATE: 'certificate' };
 
+// Questions Q3–Q8 with their exact options
+const RADIO_QUESTIONS = [
+  {
+    key: 'expectations',
+    label: 'To what extent did the workshop meet your expectations?',
+    options: [
+      'Exceeded Expectations',
+      'Met Expectations',
+      'Partially Met Expectations',
+      'Did Not Meet Expectations',
+    ],
+  },
+  {
+    key: 'overallQuality',
+    label: 'How would you rate the overall quality of the workshop?',
+    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
+  },
+  {
+    key: 'contentRelevance',
+    label: 'How relevant was the workshop content to your professional or academic needs?',
+    options: ['Highly Relevant', 'Relevant', 'Somewhat Relevant', 'Not Relevant'],
+  },
+  {
+    key: 'resourcePerson',
+    label: 'How would you rate the knowledge and delivery of the resource person(s)?',
+    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
+  },
+  {
+    key: 'sessionEffectiveness',
+    label: 'How effective were the presentations, discussions, and practical sessions?',
+    options: ['Highly Effective', 'Effective', 'Moderately Effective', 'Not Effective'],
+  },
+  {
+    key: 'arrangements',
+    label: 'How would you rate the workshop arrangements, including venue, time management, and coordination?',
+    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
+  },
+];
+
 export default function FeedbackClient({ workshop: ws }) {
   const [step, setStep] = useState(STEPS.EMAIL);
   const [participant, setParticipant] = useState(null);
-  const [feedbackData, setFeedbackData] = useState(null);
   const [certIndex, setCertIndex] = useState(1);
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto">
+      {/* Back link */}
       <Link
         href={`/${ws.id}/`}
-        className="inline-flex items-center gap-2 text-sm text-slcr-blue hover:underline mb-6"
+        className="inline-flex items-center gap-1 text-xs text-slcr-blue hover:underline mb-4"
       >
-        <ArrowLeft size={15} /> Back to Workshop
+        <ArrowLeft size={13} /> Back to Workshop
       </Link>
 
-      {/* Progress steps */}
-      <div className="flex items-center gap-2 mb-8 no-print">
+      {/* Step indicator — numbers only on tiny screens, labels on sm+ */}
+      <div className="flex items-center mb-5 no-print">
         {[
-          { key: STEPS.EMAIL, label: '1. Verify Email' },
-          { key: STEPS.FEEDBACK, label: '2. Feedback' },
-          { key: STEPS.CERTIFICATE, label: '3. Certificate' },
+          { key: STEPS.EMAIL, short: '1', label: 'Verify Email' },
+          { key: STEPS.FEEDBACK, short: '2', label: 'Feedback' },
+          { key: STEPS.CERTIFICATE, short: '3', label: 'Certificate' },
         ].map((s, i) => {
           const done =
             (s.key === STEPS.EMAIL && step !== STEPS.EMAIL) ||
             (s.key === STEPS.FEEDBACK && step === STEPS.CERTIFICATE);
           const active = step === s.key;
           return (
-            <div key={s.key} className="flex items-center gap-2">
-              <div
-                className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors ${
-                  done
-                    ? 'bg-green-500 text-white'
-                    : active
-                    ? 'bg-slcr-blue text-white'
-                    : 'bg-gray-200 text-gray-500'
-                }`}
-              >
-                {done ? <CheckCircle2 size={14} /> : i + 1}
+            <div key={s.key} className="flex items-center flex-1">
+              <div className="flex flex-col items-center gap-0.5 shrink-0">
+                <div
+                  className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold transition-colors ${
+                    done
+                      ? 'bg-green-500 text-white'
+                      : active
+                      ? 'bg-slcr-blue text-white'
+                      : 'bg-gray-200 text-gray-500'
+                  }`}
+                >
+                  {done ? <CheckCircle2 size={12} /> : s.short}
+                </div>
+                <span
+                  className={`hidden sm:block text-xs font-medium whitespace-nowrap ${
+                    active ? 'text-slcr-blue' : done ? 'text-green-600' : 'text-gray-400'
+                  }`}
+                >
+                  {s.label}
+                </span>
               </div>
-              <span
-                className={`text-sm font-medium ${
-                  active ? 'text-slcr-blue' : done ? 'text-green-600' : 'text-gray-400'
-                }`}
-              >
-                {s.label}
-              </span>
-              {i < 2 && <div className="flex-1 h-px bg-gray-200 mx-2 w-8" />}
+              {i < 2 && <div className="flex-1 h-px bg-gray-200 mx-1" />}
             </div>
           );
         })}
@@ -74,20 +115,12 @@ export default function FeedbackClient({ workshop: ws }) {
         <FeedbackStep
           ws={ws}
           participant={participant}
-          onSubmit={(data) => {
-            setFeedbackData(data);
-            setStep(STEPS.CERTIFICATE);
-          }}
+          onSubmit={() => setStep(STEPS.CERTIFICATE)}
         />
       )}
 
       {step === STEPS.CERTIFICATE && participant && (
-        <CertificateStep
-          ws={ws}
-          participant={participant}
-          certIndex={certIndex}
-          feedbackData={feedbackData}
-        />
+        <CertificateStep ws={ws} participant={participant} certIndex={certIndex} />
       )}
     </div>
   );
@@ -105,26 +138,22 @@ function EmailVerifyStep({ ws, onVerified }) {
     setLoading(true);
 
     try {
-      // Fetch the registration data (hosted under /data/ in the static site)
       const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
       const res = await fetch(`${basePath}/data/${ws.dataFile}`);
-      if (!res.ok) throw new Error('Could not load registration data.');
+      if (!res.ok) throw new Error();
 
       const registrations = await res.json();
-      const normalised = email.trim().toLowerCase();
-      const found = registrations.find((r) => r.email.trim().toLowerCase() === normalised);
-      const idx = registrations.findIndex((r) => r.email.trim().toLowerCase() === normalised);
+      const norm = email.trim().toLowerCase();
+      const idx = registrations.findIndex((r) => r.email.trim().toLowerCase() === norm);
 
-      if (!found) {
-        setError(
-          'This email address was not found in our registration records. Please check and try again.'
-        );
+      if (idx === -1) {
+        setError('Email not found in our records. Please check and try again.');
         setLoading(false);
         return;
       }
 
-      onVerified(found, idx);
-    } catch (err) {
+      onVerified(registrations[idx], idx);
+    } catch {
       setError('Something went wrong. Please try again later.');
     }
 
@@ -132,35 +161,35 @@ function EmailVerifyStep({ ws, onVerified }) {
   }
 
   return (
-    <div className="card p-8">
-      <h2 className="text-2xl font-bold text-slcr-blue mb-2">Verify Your Registration</h2>
-      <p className="text-gray-500 text-sm mb-6">
-        Enter the email address you used when registering for{' '}
-        <span className="font-medium text-gray-700">{ws.title}</span>.
+    <div className="card p-4 sm:p-6">
+      <h2 className="text-base sm:text-xl font-bold text-slcr-blue mb-1">Verify Your Registration</h2>
+      <p className="text-xs sm:text-sm text-gray-500 mb-4">
+        Enter the email you used when registering for{' '}
+        <span className="font-medium text-gray-700">{ws.shortTitle}</span>.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className="label">Registered Email Address</label>
+          <label className="label text-xs sm:text-sm">Registered Email Address</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="input-field"
+            className="input-field text-sm"
           />
         </div>
 
         {error && (
-          <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
-            <AlertCircle size={16} className="shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-xs">
+            <AlertCircle size={14} className="shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
 
         <button type="submit" disabled={loading} className="btn-primary w-full flex justify-center items-center gap-2">
-          {loading ? <Loader2 size={16} className="animate-spin" /> : null}
+          {loading && <Loader2 size={14} className="animate-spin" />}
           {loading ? 'Verifying…' : 'Verify & Continue'}
         </button>
       </form>
@@ -169,49 +198,52 @@ function EmailVerifyStep({ ws, onVerified }) {
 }
 
 /* ─── Step 2: Feedback Form ──────────────────────────────────────── */
-const RATING_FIELDS = [
-  { key: 'overallRating', label: 'Overall Workshop Experience' },
-  { key: 'contentQuality', label: 'Content Quality & Relevance' },
-  { key: 'speakerEffectiveness', label: 'Speaker / Presenter Effectiveness' },
-  { key: 'venueLogistics', label: 'Venue & Logistics' },
-];
-
-function StarRating({ value, onChange }) {
+function RadioQuestion({ qIndex, field, value, onChange }) {
   return (
-    <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((n) => (
-        <button
-          key={n}
-          type="button"
-          onClick={() => onChange(n)}
-          className="focus:outline-none"
-        >
-          <Star
-            size={28}
-            className={`transition-colors ${
-              n <= value ? 'text-slcr-gold fill-slcr-gold' : 'text-gray-300'
+    <div className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+      <p className="text-xs sm:text-sm font-semibold text-gray-800 mb-2">
+        <span className="text-slcr-blue mr-1">Q{qIndex}.</span>
+        {field.label}
+      </p>
+      <div className="space-y-1.5">
+        {field.options.map((opt) => (
+          <label
+            key={opt}
+            className={`flex items-center gap-2 cursor-pointer rounded-lg px-2.5 py-2 transition-colors text-xs sm:text-sm ${
+              value === opt
+                ? 'bg-blue-50 border border-slcr-blue text-slcr-blue font-medium'
+                : 'border border-transparent hover:bg-gray-50 text-gray-700'
             }`}
-          />
-        </button>
-      ))}
+          >
+            <input
+              type="radio"
+              name={field.key}
+              value={opt}
+              checked={value === opt}
+              onChange={() => onChange(opt)}
+              className="accent-slcr-blue shrink-0"
+            />
+            {opt}
+          </label>
+        ))}
+      </div>
     </div>
   );
 }
 
 function FeedbackStep({ ws, participant, onSubmit }) {
-  const [ratings, setRatings] = useState({ overallRating: 0, contentQuality: 0, speakerEffectiveness: 0, venueLogistics: 0 });
-  const [valuable, setValuable] = useState('');
+  const initRadios = Object.fromEntries(RADIO_QUESTIONS.map((q) => [q.key, '']));
+  const [radios, setRadios] = useState(initRadios);
+  const [mostUseful, setMostUseful] = useState('');
   const [suggestions, setSuggestions] = useState('');
-  const [recommend, setRecommend] = useState('');
-  const [comments, setComments] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const missing = RATING_FIELDS.find((f) => !ratings[f.key]);
+    const missing = RADIO_QUESTIONS.find((q) => !radios[q.key]);
     if (missing) {
-      setError(`Please rate: ${missing.label}`);
+      setError(`Please answer: "${missing.label}"`);
       return;
     }
     setError('');
@@ -219,14 +251,11 @@ function FeedbackStep({ ws, participant, onSubmit }) {
 
     const payload = {
       workshop: ws.id,
-      participantName: participant.name,
-      participantEmail: participant.email,
-      participantOrg: participant.organization,
-      ...ratings,
-      mostValuable: valuable,
+      name: participant.name,
+      email: participant.email,
+      ...radios,
+      mostUsefulAspect: mostUseful,
       suggestions,
-      wouldRecommend: recommend,
-      additionalComments: comments,
       submittedAt: new Date().toISOString(),
     };
 
@@ -243,93 +272,92 @@ function FeedbackStep({ ws, participant, onSubmit }) {
     }
 
     setSubmitting(false);
-    onSubmit(payload);
+    onSubmit();
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="card p-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="bg-green-50 rounded-full px-3 py-1 text-green-700 text-sm font-semibold flex items-center gap-1">
-            <CheckCircle2 size={14} /> Verified: {participant.name}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Pre-filled info */}
+      <div className="card p-4 sm:p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <CheckCircle2 size={14} className="text-green-500 shrink-0" />
+          <span className="text-xs sm:text-sm text-green-700 font-semibold">
+            Verified: {participant.name}
+          </span>
+        </div>
+
+        <h2 className="text-base sm:text-xl font-bold text-slcr-blue mb-1">Workshop Feedback</h2>
+        <p className="text-xs text-gray-400 mb-4">
+          {ws.title} · {ws.displayDate}
+        </p>
+
+        {/* Q1 and Q2 — pre-filled, read-only */}
+        <div className="space-y-3 mb-4">
+          <div>
+            <label className="label text-xs">Q1. Name</label>
+            <input
+              type="text"
+              value={participant.name}
+              readOnly
+              className="input-field text-xs sm:text-sm bg-gray-50 cursor-not-allowed"
+            />
+          </div>
+          <div>
+            <label className="label text-xs">Q2. Email Address</label>
+            <input
+              type="email"
+              value={participant.email}
+              readOnly
+              className="input-field text-xs sm:text-sm bg-gray-50 cursor-not-allowed"
+            />
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-slcr-blue mb-1">Workshop Feedback</h2>
-        <p className="text-gray-500 text-sm mb-6">
-          Your feedback helps us improve future workshops. All fields marked * are required.
-        </p>
-
-        {/* Star ratings */}
-        <div className="space-y-5">
-          {RATING_FIELDS.map((field) => (
-            <div key={field.key}>
-              <label className="label">{field.label} *</label>
-              <StarRating
-                value={ratings[field.key]}
-                onChange={(v) => setRatings((prev) => ({ ...prev, [field.key]: v }))}
-              />
-            </div>
+        {/* Q3–Q8: radio questions */}
+        <div className="space-y-4">
+          {RADIO_QUESTIONS.map((field, i) => (
+            <RadioQuestion
+              key={field.key}
+              qIndex={i + 3}
+              field={field}
+              value={radios[field.key]}
+              onChange={(v) => setRadios((prev) => ({ ...prev, [field.key]: v }))}
+            />
           ))}
         </div>
       </div>
 
-      <div className="card p-8 space-y-5">
+      {/* Q9 & Q10 — text answers */}
+      <div className="card p-4 sm:p-5 space-y-4">
         <div>
-          <label className="label">Most valuable aspect of the workshop</label>
+          <label className="label text-xs sm:text-sm">
+            Q9. What was the most useful aspect of the workshop?
+          </label>
           <textarea
-            value={valuable}
-            onChange={(e) => setValuable(e.target.value)}
+            value={mostUseful}
+            onChange={(e) => setMostUseful(e.target.value)}
             rows={3}
-            placeholder="What did you find most useful or impactful?"
-            className="input-field resize-none"
+            placeholder="Describe what you found most valuable…"
+            className="input-field resize-none text-xs sm:text-sm"
           />
         </div>
 
         <div>
-          <label className="label">Suggestions for improvement</label>
+          <label className="label text-xs sm:text-sm">
+            Q10. Suggestions for improving future workshops
+          </label>
           <textarea
             value={suggestions}
             onChange={(e) => setSuggestions(e.target.value)}
             rows={3}
-            placeholder="How can we make future workshops better?"
-            className="input-field resize-none"
-          />
-        </div>
-
-        <div>
-          <label className="label">Would you recommend this workshop to a colleague?</label>
-          <div className="flex gap-4 mt-1">
-            {['Yes', 'No', 'Maybe'].map((opt) => (
-              <label key={opt} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="recommend"
-                  value={opt}
-                  checked={recommend === opt}
-                  onChange={() => setRecommend(opt)}
-                  className="accent-slcr-blue"
-                />
-                <span className="text-sm">{opt}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <label className="label">Any other comments</label>
-          <textarea
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
-            rows={3}
-            placeholder="Anything else you'd like to share…"
-            className="input-field resize-none"
+            placeholder="Your suggestions…"
+            className="input-field resize-none text-xs sm:text-sm"
           />
         </div>
 
         {error && (
-          <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
-            <AlertCircle size={16} className="shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-xs">
+            <AlertCircle size={13} className="shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
@@ -339,8 +367,8 @@ function FeedbackStep({ ws, participant, onSubmit }) {
           disabled={submitting}
           className="btn-primary w-full flex justify-center items-center gap-2"
         >
-          {submitting ? <Loader2 size={16} className="animate-spin" /> : null}
-          {submitting ? 'Submitting…' : 'Submit Feedback & Generate Certificate'}
+          {submitting && <Loader2 size={14} className="animate-spin" />}
+          {submitting ? 'Submitting…' : 'Submit & Generate Certificate'}
         </button>
       </div>
     </form>
@@ -348,20 +376,18 @@ function FeedbackStep({ ws, participant, onSubmit }) {
 }
 
 /* ─── Step 3: Certificate ────────────────────────────────────────── */
-function CertificateStep({ ws, participant, certIndex, feedbackData }) {
+function CertificateStep({ ws, participant, certIndex }) {
   const serialNumber = `${ws.certificate.serialPrefix}-${String(certIndex).padStart(3, '0')}`;
 
   return (
     <div>
-      <div className="card p-6 mb-6 no-print bg-green-50 border border-green-200">
-        <div className="flex items-center gap-3">
-          <CheckCircle2 size={28} className="text-green-600 shrink-0" />
-          <div>
-            <p className="font-bold text-green-800">Feedback submitted — thank you!</p>
-            <p className="text-sm text-green-700 mt-0.5">
-              Your certificate is ready. Download it below.
-            </p>
-          </div>
+      <div className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl p-3 mb-4 no-print">
+        <CheckCircle2 size={18} className="text-green-600 shrink-0 mt-0.5" />
+        <div>
+          <p className="text-xs sm:text-sm font-bold text-green-800">
+            Feedback submitted — thank you!
+          </p>
+          <p className="text-xs text-green-700 mt-0.5">Your certificate is ready below.</p>
         </div>
       </div>
 
