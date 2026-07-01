@@ -153,25 +153,22 @@ function EmailVerifyStep({ ws, onVerified }) {
     setLoading(true);
 
     try {
-      const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-      const res = await fetch(`${basePath}/data/${ws.dataFile}`);
-      if (!res.ok) throw new Error();
-
-      const participants = await res.json();
-
-      // Hash the typed email in the browser — only the hash is compared
+      // Hash email in browser first — only the hash is sent over the network
       const hash = await sha256(email.trim().toLowerCase());
-      const idx = participants.findIndex((p) => p.emailHash === hash);
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+      // Fetch only the single file for this hash — 404 = not registered
+      const res = await fetch(`${basePath}/data/${ws.id}/hashes/${hash}.json`);
 
-      if (idx === -1) {
+      if (res.status === 404) {
         setError('Email not found in our records. Please check and try again.');
         setLoading(false);
         return;
       }
+      if (!res.ok) throw new Error();
 
-      // Only pass name + email (for pre-fill) — no sensitive data
-      const { name, id } = participants[idx];
-      onVerified({ name, email: email.trim(), id }, idx);
+      // Only {id, name} comes back — no email, phone, address, or gender
+      const { id, name } = await res.json();
+      onVerified({ name, email: email.trim(), id }, id - 1);
     } catch {
       setError('Something went wrong. Please try again later.');
     }
