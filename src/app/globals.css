@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --slcr-blue: #1a3c6e;
+  --slcr-gold: #c9a84c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-800 antialiased;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-slcr-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-slcr-lightblue transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-gold {
+    @apply bg-slcr-gold text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-slcr-blue focus:border-transparent text-gray-800;
+  }
+
+  .label {
+    @apply block text-sm font-semibold text-gray-700 mb-1;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-slcr-blue mb-2;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
