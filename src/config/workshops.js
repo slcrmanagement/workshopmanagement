@@ -3,10 +3,14 @@
  *
  * TO ADD A NEW WORKSHOP:
  *  1. Copy the object below and paste it after the comment at the bottom.
- *  2. Create  data/<id>/registrations.json  with participant rows.
- *  3. Fill in googleRegistrationFormUrl, feedbackGoogleFormUrl, googleSheetId if you have them.
- *  4. Set feedbackEndpoint to a Google Apps Script URL or Formspree URL to collect feedback.
- *  5. npm run build  →  GitHub Actions deploys automatically.
+ *  2. Set registrationOpen: true and fill in the dates.
+ *  3. Set registrationEndpoint to collect form submissions:
+ *       - Formspree (free): create account at formspree.io → paste URL here
+ *       - Google Apps Script: deploy as web app → paste URL here
+ *       - Leave '' to skip (just show thank-you page with no storage)
+ *  4. Create  data/<id>/registrations.json  (empty array []) — fill manually
+ *     after each registration.
+ *  5. npm run build → GitHub Actions auto-deploys.
  */
 
 export const workshops = [
@@ -32,24 +36,24 @@ export const workshops = [
     tags: ['Water Resources', 'GIS', 'Urban Planning', 'Drainage', 'Environment', 'Disaster Management'],
 
     // ── State flags ───────────────────────────────────────────────────────
-    registrationOpen: false,
+    registrationOpen: false,   // set true for future workshops
     feedbackOpen: true,
 
-    // ── Google integration (fill in when available) ───────────────────────
-    googleRegistrationFormUrl: '', // Google Form URL used for registration
-    feedbackGoogleFormUrl: '',     // Google Form URL for feedback (alternate channel)
-    googleSheetId: '',             // Sheet ID of the registration responses spreadsheet
-
-    // ── Local data file ───────────────────────────────────────────────────
-    // Path relative to /data/ directory — served as static JSON by GitHub Pages
-    dataFile: 'scalgo-live-2026/registrations.json',
+    // ── Registration form endpoint ────────────────────────────────────────
+    // Where to POST registration submissions (JSON).
+    // Options:
+    //   Formspree  →  https://formspree.io/f/<your-id>
+    //   Apps Script →  https://script.google.com/macros/s/<id>/exec
+    //   '' to show thank-you only (add people manually to registrations.json)
+    registrationEndpoint: '',
 
     // ── Feedback submission endpoint ──────────────────────────────────────
-    // POST target for feedback JSON. Options:
-    //   Google Apps Script web app URL   →  deploy script as web app, paste URL here
-    //   Formspree                        →  https://formspree.io/f/<id>
-    //   Leave '' to skip (certificate still generates)
+    // Same options as registrationEndpoint.
     feedbackEndpoint: '',
+
+    // ── Local data file ───────────────────────────────────────────────────
+    // Path under /data/ — edit this JSON file to add/remove participants.
+    dataFile: 'scalgo-live-2026/registrations.json',
 
     // ── Certificate ───────────────────────────────────────────────────────
     certificate: {
@@ -64,15 +68,13 @@ export const workshops = [
           title: 'SLCR, IIT (BHU) Varanasi',
         },
       ],
-      // Prefix for serial numbers → SLCR-SCALGO26-001, -002 …
       serialPrefix: 'SLCR-SCALGO26',
     },
   },
 
-  // ─── Paste future workshops below this line ───────────────────────────────
+  // ─── Add future workshops below ──────────────────────────────────────────
 ];
 
-/** Look up a single workshop by id. */
 export function getWorkshop(id) {
   return workshops.find((w) => w.id === id) ?? null;
 }
