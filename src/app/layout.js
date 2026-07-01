@@ -4,6 +4,7 @@ export const metadata = {
   title: 'SLCR Workshop Portal | IIT (BHU) Varanasi',
   description:
     'Smart Laboratory on Clean Rivers – workshop registrations, feedback, and certificates.',
+  icons: { icon: '/favicon.svg' },
 };
 
 export const viewport = {

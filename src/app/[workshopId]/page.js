@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { workshops, getWorkshop } from '@/config/workshops';
 import { Calendar, MapPin, Building2, Lock, ClipboardList, Award, ArrowLeft } from 'lucide-react';
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return workshops.map((ws) => ({ workshopId: ws.id }));
 }

@@ -71,6 +71,7 @@ export const workshops = [
       serialPrefix: 'SLCR-SCALGO26',
     },
   },
+  
 
   // ─── Add future workshops below ──────────────────────────────────────────
 ];
