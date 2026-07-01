@@ -3,11 +3,12 @@
  *
  * TO ADD A NEW WORKSHOP:
  *  1. Copy the object below and paste it after the comment at the bottom.
- *  2. Set registrationOpen: true and fill in the dates.
+ *  2. Fill in the dates — registrationOpen is AUTO-COMPUTED from registrationDeadline.
+ *     Before/on the deadline → Registration Open. After → Closed.
  *  3. Set registrationEndpoint to collect form submissions:
  *       - Formspree (free): create account at formspree.io → paste URL here
  *       - Google Apps Script: deploy as web app → paste URL here
- *       - Leave '' to skip (just show thank-you page with no storage)
+ *       - Leave '' to skip (just show thank-you page, add people manually)
  *  4. Create  data/<id>/registrations.json  (empty array []) — fill manually
  *     after each registration.
  *  5. npm run build → GitHub Actions auto-deploys.
@@ -22,6 +23,8 @@ export const workshops = [
     // ── Dates ─────────────────────────────────────────────────────────────
     date: '2026-06-25',
     displayDate: '25 June 2026',
+    // Registration auto-opens/closes based on this date (inclusive end of day).
+    // Change this date to control when registration opens or closes.
     registrationDeadline: '2026-06-20',
 
     // ── Location & organiser ──────────────────────────────────────────────
@@ -36,23 +39,22 @@ export const workshops = [
     tags: ['Water Resources', 'GIS', 'Urban Planning', 'Drainage', 'Environment', 'Disaster Management'],
 
     // ── State flags ───────────────────────────────────────────────────────
-    registrationOpen: false,   // set true for future workshops
+    // No registrationOpen field — it is computed automatically from registrationDeadline.
+    // Set feedbackOpen: true once the workshop has taken place.
     feedbackOpen: true,
 
     // ── Registration form endpoint ────────────────────────────────────────
     // Where to POST registration submissions (JSON).
-    // Options:
-    //   Formspree  →  https://formspree.io/f/<your-id>
-    //   Apps Script →  https://script.google.com/macros/s/<id>/exec
-    //   '' to show thank-you only (add people manually to registrations.json)
+    // Formspree: https://formspree.io/f/<your-id>
+    // Apps Script: https://script.google.com/macros/s/<id>/exec
+    // Leave '' to show thank-you only (add people manually to registrations.json)
     registrationEndpoint: '',
 
     // ── Feedback submission endpoint ──────────────────────────────────────
-    // Same options as registrationEndpoint.
     feedbackEndpoint: '',
 
     // ── Local data file ───────────────────────────────────────────────────
-    // Path under /data/ — edit this JSON file to add/remove participants.
+    // Edit this JSON file to add/remove participants.
     dataFile: 'scalgo-live-2026/registrations.json',
 
     // ── Certificate ───────────────────────────────────────────────────────
@@ -71,7 +73,6 @@ export const workshops = [
       serialPrefix: 'SLCR-SCALGO26',
     },
   },
-  
 
   // ─── Add future workshops below ──────────────────────────────────────────
 ];

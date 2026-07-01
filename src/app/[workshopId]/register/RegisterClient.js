@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, Loader2, AlertCircle, Lock } from 'lucide-react';
+import { isRegistrationOpen } from '@/lib/workshopUtils';
 
 const FIELDS = [
   { key: 'name',              label: 'Name of Candidate',      type: 'text',     required: true },
@@ -26,8 +27,8 @@ export default function RegisterClient({ workshop: ws }) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  // Show closed state for this and past workshops
-  if (!ws.registrationOpen) {
+  // Auto-check deadline — no manual flag needed
+  if (!isRegistrationOpen(ws.registrationDeadline)) {
     return (
       <div className="max-w-xl mx-auto">
         <Link href={`/${ws.id}/`} className="inline-flex items-center gap-1 text-xs text-slcr-blue hover:underline mb-4">

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { workshops, getWorkshop } from '@/config/workshops';
-import { Calendar, MapPin, Building2, Lock, ClipboardList, Award, ArrowLeft } from 'lucide-react';
+import { Calendar, MapPin, Building2, ClipboardList, Award, ArrowLeft } from 'lucide-react';
+import RegistrationSection from '@/components/RegistrationSection';
 
 export async function generateStaticParams() {
   return workshops.map((ws) => ({ workshopId: ws.id }));
@@ -66,42 +67,10 @@ export default function WorkshopPage({ params }) {
         <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{ws.description}</p>
       </div>
 
-      {/* Registration */}
+      {/* Registration — computed from deadline date at runtime */}
       <div className="card p-4 sm:p-5 mb-4">
         <h3 className="section-title">Registration</h3>
-        {ws.registrationOpen ? (
-          <div>
-            <p className="text-xs text-green-700 font-semibold mb-1">Registration is open!</p>
-            <p className="text-xs text-gray-500 mb-3">
-              Deadline: <span className="font-medium text-gray-700">{ws.registrationDeadline}</span>
-            </p>
-            <Link href={`/${ws.id}/register/`} className="btn-primary inline-flex items-center gap-1.5">
-              Register Now
-            </Link>
-          </div>
-        ) : (
-          <div className="flex items-start gap-3">
-            <div className="bg-red-50 rounded-full p-2 shrink-0">
-              <Lock size={16} className="text-red-500" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-red-600 mb-0.5">Registration Closed</p>
-              <p className="text-xs text-gray-500">
-                The deadline was{' '}
-                <span className="font-medium text-gray-700">{ws.registrationDeadline}</span>.
-              </p>
-              {ws.feedbackOpen && (
-                <p className="text-xs text-gray-500 mt-1">
-                  Already registered?{' '}
-                  <Link href={`/${ws.id}/feedback/`} className="text-slcr-blue underline font-medium">
-                    Submit feedback &amp; get your certificate
-                  </Link>
-                  .
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+        <RegistrationSection workshop={ws} />
       </div>
 
       {/* Feedback & Certificate */}
