@@ -2,8 +2,6 @@ import { workshops, getWorkshop } from '@/config/workshops';
 import { notFound } from 'next/navigation';
 import FeedbackClient from './FeedbackClient';
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   return workshops.map((ws) => ({ workshopId: ws.id }));
 }
