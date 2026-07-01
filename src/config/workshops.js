@@ -55,7 +55,7 @@ export const workshops = [
 
     // ── Local data file ───────────────────────────────────────────────────
     // Edit this JSON file to add/remove participants.
-    dataFile: 'scalgo-live-2026/registrations.json',
+    dataFile: 'scalgo-live-2026/participants.json',
 
     // ── Certificate ───────────────────────────────────────────────────────
     certificate: {

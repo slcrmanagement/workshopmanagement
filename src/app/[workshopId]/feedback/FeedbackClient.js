@@ -126,7 +126,22 @@ export default function FeedbackClient({ workshop: ws }) {
   );
 }
 
+/* ─── SHA-256 helper (Web Crypto API — browser only) ─────────────── */
+async function sha256(text) {
+  const buf = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(text)
+  );
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 /* ─── Step 1: Email Verification ─────────────────────────────────── */
+// participants.json contains ONLY { id, name, emailHash } — no phone,
+// address, gender, or raw email. The entered email is hashed in the
+// browser before comparison, so personal data is never exposed in the
+// network tab.
 function EmailVerifyStep({ ws, onVerified }) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -142,9 +157,11 @@ function EmailVerifyStep({ ws, onVerified }) {
       const res = await fetch(`${basePath}/data/${ws.dataFile}`);
       if (!res.ok) throw new Error();
 
-      const registrations = await res.json();
-      const norm = email.trim().toLowerCase();
-      const idx = registrations.findIndex((r) => r.email.trim().toLowerCase() === norm);
+      const participants = await res.json();
+
+      // Hash the typed email in the browser — only the hash is compared
+      const hash = await sha256(email.trim().toLowerCase());
+      const idx = participants.findIndex((p) => p.emailHash === hash);
 
       if (idx === -1) {
         setError('Email not found in our records. Please check and try again.');
@@ -152,7 +169,9 @@ function EmailVerifyStep({ ws, onVerified }) {
         return;
       }
 
-      onVerified(registrations[idx], idx);
+      // Only pass name + email (for pre-fill) — no sensitive data
+      const { name, id } = participants[idx];
+      onVerified({ name, email: email.trim(), id }, idx);
     } catch {
       setError('Something went wrong. Please try again later.');
     }
