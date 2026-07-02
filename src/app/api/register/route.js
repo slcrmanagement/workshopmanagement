@@ -41,6 +41,8 @@ export async function POST(request) {
 
     const entry = { id: nextId, registeredAt: new Date().toISOString() };
     for (const f of formFields) entry[f.key] = fields[f.key] ?? '';
+    // Attendance is confirmed by an admin after the workshop, not by the registrant.
+    entry.attendee = false;
 
     list.push(entry);
 

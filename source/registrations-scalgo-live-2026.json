@@ -9,8 +9,9 @@
     "primaryAreaOfWork": "Urban Sewage Management",
     "organization": "Indian Institute of Technology (BHU), Varanasi",
     "address": "Rajatalab, Varanasi",
-    "phone": "9175062616",
-    "accommodationRequired": "No"
+    "phone": 9175062616,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 2,
@@ -22,8 +23,9 @@
     "primaryAreaOfWork": "Water Resources",
     "organization": "Jacobs",
     "address": "New Delhi",
-    "phone": "8677949928",
-    "accommodationRequired": "Yes"
+    "phone": 8677949928,
+    "accommodationRequired": "Yes",
+    "attendee": false
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "organization": "Architecture planning and design Department, IITBHU",
     "address": "IIT BHU Varanasi",
     "phone": "9102795624",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 4,
@@ -48,8 +51,9 @@
     "primaryAreaOfWork": "Land surface change detection and analysis",
     "organization": "Dept. of Geology, Bananas Hindu University",
     "address": "Ganeshpuri Colony Lane 1, Varanasi",
-    "phone": "8723058960",
-    "accommodationRequired": "No"
+    "phone": 8723058960,
+    "accommodationRequired": "NO",
+    "attendee": true
   },
   {
     "id": 5,
@@ -61,21 +65,23 @@
     "primaryAreaOfWork": "RS and GIS, River modeling",
     "organization": "IIT BHU",
     "address": "Hydrabad Gate BHU Varanasi",
-    "phone": "8789969138",
-    "accommodationRequired": "No"
+    "phone": 8789969138,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 6,
     "registeredAt": "2026-06-19T16:21:19",
     "name": "RAJAT MISHRA",
-    "gender": "Male",
+    "gender": "MALE",
     "email": "rajatmishra@csauk.ac.in",
     "designation": "Teaching Associate",
     "primaryAreaOfWork": "Hydrology",
     "organization": "CSAUAT, Kanpur",
     "address": "Nawabganj, Kanpur, Uttar Pradesh, India-208002",
-    "phone": "9198948711",
-    "accommodationRequired": "Yes"
+    "phone": 9198948711,
+    "accommodationRequired": "Yes",
+    "attendee": false
   },
   {
     "id": 7,
@@ -87,8 +93,9 @@
     "primaryAreaOfWork": "Water quality monitoring",
     "organization": "Indian Institute of Technology (BHU), Varanasi",
     "address": "NA",
-    "phone": "8726088759",
-    "accommodationRequired": "No"
+    "phone": 8726088759,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 8,
@@ -100,8 +107,9 @@
     "primaryAreaOfWork": "",
     "organization": "IIT BHU",
     "address": "",
-    "phone": "9140026118",
-    "accommodationRequired": "No"
+    "phone": 9140026118,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 9,
@@ -113,8 +121,9 @@
     "primaryAreaOfWork": "Bundelkhand",
     "organization": "SPMPS  Nyaas",
     "address": "Atarra,banda UP 210201",
-    "phone": "7303048090",
-    "accommodationRequired": "Yes"
+    "phone": 7303048090,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 10,
@@ -126,8 +135,9 @@
     "primaryAreaOfWork": "Sustainable Energy",
     "organization": "Indian Institute of Technology Roorkee",
     "address": "Sarojini Bhawan, IIT Roorkee, Haridwar",
-    "phone": "8840187307",
-    "accommodationRequired": "No"
+    "phone": 8840187307,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 11,
@@ -140,7 +150,8 @@
     "organization": "UNIVERSITY OF ALLAHABAD PRAYAGRAJ UTTAR PRADESH",
     "address": "VILLAGE PIPRI VILLAGE PANCHAYAT KANJA SHARIFPUR POST MAKANPUR SUB DISTRICT LAHARPUR DISTRICT SITAPUR UTTAR PRADESH PIN CODE 261135",
     "phone": "9415805292",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 12,
@@ -152,8 +163,9 @@
     "primaryAreaOfWork": "Integrated Development",
     "organization": "P.S.M.P.G. Collage, Kannauj (U.P.)",
     "address": "P.S.M.P.G. Collage, Kannauj (U.P.)",
-    "phone": "8009502499",
-    "accommodationRequired": "No"
+    "phone": 8009502499,
+    "accommodationRequired": "NO",
+    "attendee": false
   },
   {
     "id": 13,
@@ -166,7 +178,8 @@
     "organization": "Central university of South Bihar",
     "address": "Gaya, Bihar",
     "phone": "8840025254",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 14,
@@ -178,8 +191,9 @@
     "primaryAreaOfWork": "Social Services",
     "organization": "Siddhapeeth Maa Pahadia Dai Seva Nyas",
     "address": "H No 18 Pant Nagar Fourbisganj Civil Lines Gonda Uttar Pradesh 271001",
-    "phone": "9565186157",
-    "accommodationRequired": "No"
+    "phone": 9565186157,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 15,
@@ -191,8 +205,9 @@
     "primaryAreaOfWork": "Environmental science",
     "organization": "Iitbhu",
     "address": "Mining Engineering",
-    "phone": "9807551809",
-    "accommodationRequired": "No"
+    "phone": 9807551809,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 16,
@@ -204,8 +219,9 @@
     "primaryAreaOfWork": "Subsidence Analysis",
     "organization": "IIT BHU Varanasi",
     "address": "",
-    "phone": "9838660830",
-    "accommodationRequired": "No"
+    "phone": 9838660830,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 17,
@@ -218,7 +234,8 @@
     "organization": "IIT BHU",
     "address": "IIT BHU",
     "phone": "8077945861",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 18,
@@ -230,8 +247,9 @@
     "primaryAreaOfWork": "Green chemistry, energy",
     "organization": "IIT BHU",
     "address": "Chemistry department",
-    "phone": "8077945861",
-    "accommodationRequired": "No"
+    "phone": 8077945861,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 19,
@@ -243,8 +261,9 @@
     "primaryAreaOfWork": "Water intrusion in deep underground mines",
     "organization": "Department of Mining Engineering IIT BHU",
     "address": "Department of Mining Engineering iit bhu",
-    "phone": "6387577706",
-    "accommodationRequired": "No"
+    "phone": 6387577706,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 20,
@@ -256,8 +275,9 @@
     "primaryAreaOfWork": "Environment, Health, Disaster, regional planning",
     "organization": "Allahabad Degree College (University of Allahabad)",
     "address": "Department of Geography, Allahabad Degree College (University of Allahabad), Prayagraj",
-    "phone": "9452314946",
-    "accommodationRequired": "No"
+    "phone": 9452314946,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 21,
@@ -269,8 +289,9 @@
     "primaryAreaOfWork": "Post-graduation student",
     "organization": "Indira Gandhi National Open University",
     "address": "Suryabhanpur, Bhadohi, U.P.",
-    "phone": "8007950916",
-    "accommodationRequired": "No"
+    "phone": 8007950916,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 22,
@@ -283,7 +304,8 @@
     "organization": "IIT BHU",
     "address": "Hydrabad Gate IIT BHU",
     "phone": "9102795624",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 23,
@@ -295,8 +317,9 @@
     "primaryAreaOfWork": "Sustainable catalysis in chemistry",
     "organization": "IIT BHU",
     "address": "Chemistry department IIT BHU",
-    "phone": "7052361929",
-    "accommodationRequired": "No"
+    "phone": 7052361929,
+    "accommodationRequired": "NO",
+    "attendee": false
   },
   {
     "id": 24,
@@ -308,8 +331,9 @@
     "primaryAreaOfWork": "Environmental flow",
     "organization": "Department of architecture planning and design IIT(BHU)",
     "address": "Near by sms college Varanasi",
-    "phone": "9795647592",
-    "accommodationRequired": "No"
+    "phone": 9795647592,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 25,
@@ -321,8 +345,9 @@
     "primaryAreaOfWork": "Hydrogeology",
     "organization": "Banaras Hindu University",
     "address": "Department of Geology, Banaras Hindu University",
-    "phone": "9658521582",
-    "accommodationRequired": "No"
+    "phone": 9658521582,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 26,
@@ -334,8 +359,9 @@
     "primaryAreaOfWork": "Hydrology and Water Resource",
     "organization": "Indira Gandhi National Open University",
     "address": "Asauvapar Mohrai, Akbarpur, Ambedkar Nagar, UP, 224210",
-    "phone": "8948414715",
-    "accommodationRequired": "No"
+    "phone": 8948414715,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 27,
@@ -347,21 +373,23 @@
     "primaryAreaOfWork": "Wastewater Remediation",
     "organization": "IIT (BHU) Varanasi",
     "address": "Environmental Biotechnology Lab-3, Department of Chemical Engineering mad Technology, IIT (BHU) Varanasi, Varanasi, 221005",
-    "phone": "9695000182",
-    "accommodationRequired": "No"
+    "phone": 9695000182,
+    "accommodationRequired": "NO",
+    "attendee": true
   },
   {
     "id": 28,
     "registeredAt": "2026-06-23T12:55:05",
     "name": "chakrawarti patel",
-    "gender": "Male",
+    "gender": "male",
     "email": "chakrawarti.pa.civ25@itbhu.ac.in",
     "designation": "Project assistant",
     "primaryAreaOfWork": "GIS",
     "organization": "IIT BHU",
     "address": "VARANASI",
-    "phone": "9559444705",
-    "accommodationRequired": "No"
+    "phone": 9559444705,
+    "accommodationRequired": "NO",
+    "attendee": true
   },
   {
     "id": 29,
@@ -374,7 +402,8 @@
     "organization": "IIT (BHU)",
     "address": "Varanasi, UP",
     "phone": "8318116207",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 30,
@@ -386,8 +415,9 @@
     "primaryAreaOfWork": "Web developer",
     "organization": "IIT BHU Civil department",
     "address": "Varanasi",
-    "phone": "7080240478",
-    "accommodationRequired": "No"
+    "phone": 7080240478,
+    "accommodationRequired": "NO",
+    "attendee": true
   },
   {
     "id": 31,
@@ -399,8 +429,9 @@
     "primaryAreaOfWork": "Software engineer",
     "organization": "IIT BHU",
     "address": "Civil engineering department IIT BHU ,VARANASI",
-    "phone": "7814888762",
-    "accommodationRequired": "No"
+    "phone": 7814888762,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 32,
@@ -412,8 +443,9 @@
     "primaryAreaOfWork": "Software Engineer",
     "organization": "IIT BHU",
     "address": "House no 105, Vivek Nagar Colony, BHU",
-    "phone": "8178312391",
-    "accommodationRequired": "No"
+    "phone": 8178312391,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 33,
@@ -425,8 +457,9 @@
     "primaryAreaOfWork": "Web development",
     "organization": "IIT BHU, Varanasi",
     "address": "Durgakund , Varanasi",
-    "phone": "8770997841",
-    "accommodationRequired": "No"
+    "phone": 8770997841,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 34,
@@ -438,8 +471,9 @@
     "primaryAreaOfWork": "Software engineer",
     "organization": "IIT BHU",
     "address": "Civil engineering department IIT BHU",
-    "phone": "7814888762",
-    "accommodationRequired": "No"
+    "phone": 7814888762,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 35,
@@ -451,8 +485,9 @@
     "primaryAreaOfWork": "Freshwater ecology",
     "organization": "IIT(BHU) Varanasi",
     "address": "Geoinformatics laboratory, Department of Civil Engineering, IIT(BHU) Varanasi, Varanasi-221005, U.P.",
-    "phone": "9936588607",
-    "accommodationRequired": "No"
+    "phone": 9936588607,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 36,
@@ -464,8 +499,9 @@
     "primaryAreaOfWork": "Gis, Remote Sending, Hydrology, Forest Ecology, Watershed Management, Remote Sensing Application in Forestry, Hydrology and Climate Change",
     "organization": "Institute of Environment and Sustainable Development, Banaras Hindu University, Varanasi",
     "address": "S-26/23-E, Gandhi Nagar Colony, Meerapur Basahi, Varanasi-221005",
-    "phone": "8707295902",
-    "accommodationRequired": "No"
+    "phone": 8707295902,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 37,
@@ -477,8 +513,9 @@
     "primaryAreaOfWork": "Landslide vulnerability assessment, climate resilience, and LULC changes in hilly areas.",
     "organization": "Indian Institute of Technology (Banaras Hindu University), Varanasi.",
     "address": "IIT (BHU), Varanasi.",
-    "phone": "7007947353",
-    "accommodationRequired": "No"
+    "phone": 7007947353,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 38,
@@ -490,8 +527,9 @@
     "primaryAreaOfWork": "Remote Sensing, Gis, Hydrology, Forest Ecology, Watershed Management, Remote Sensing Application in Hydrology, Forest and Climate Change",
     "organization": "Institute of Environment and Sustainable Development, Banaras Hindu University, Varanasi",
     "address": "S-26/23-E, Gandhi Nagar Colony, Meerapur Basahi, Varanasi",
-    "phone": "8707295902",
-    "accommodationRequired": "No"
+    "phone": 8707295902,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 39,
@@ -503,8 +541,9 @@
     "primaryAreaOfWork": "Varanasi",
     "organization": "Banaras Hindu University",
     "address": "Department of Geography, Institute of science, Banaras Hindu University",
-    "phone": "8874651552",
-    "accommodationRequired": "No"
+    "phone": 8874651552,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 40,
@@ -516,8 +555,9 @@
     "primaryAreaOfWork": "Groundwater,GIS",
     "organization": "Department of Geophysics, Institute of Science,BHU",
     "address": "Varanasi",
-    "phone": "7355249595",
-    "accommodationRequired": "No"
+    "phone": 7355249595,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 41,
@@ -529,8 +569,9 @@
     "primaryAreaOfWork": "Emerging contaminants in water",
     "organization": "BHU",
     "address": "Nasirpur Varanasi 221005",
-    "phone": "9142363773",
-    "accommodationRequired": "No"
+    "phone": 9142363773,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 42,
@@ -542,8 +583,9 @@
     "primaryAreaOfWork": "River water",
     "organization": "BHU",
     "address": "Dalmia hostel bhu Varanasi",
-    "phone": "8789720384",
-    "accommodationRequired": "No"
+    "phone": 8789720384,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 43,
@@ -555,8 +597,9 @@
     "primaryAreaOfWork": "Forest Dynamics and landscape ecology",
     "organization": "Banaras Hindu University",
     "address": "Hyderabad Gate, BHU",
-    "phone": "7384556487",
-    "accommodationRequired": "No"
+    "phone": 7384556487,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 44,
@@ -568,8 +611,9 @@
     "primaryAreaOfWork": "Geography",
     "organization": "IGNOU",
     "address": "Kataka, Narayanpur, Mirzapur",
-    "phone": "7668845190",
-    "accommodationRequired": "No"
+    "phone": 7668845190,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 45,
@@ -581,8 +625,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "BANARAS HINDU UNIVERSITY",
     "address": "Karundi varanasi",
-    "phone": "8294324604",
-    "accommodationRequired": "Yes"
+    "phone": 8294324604,
+    "accommodationRequired": "Yes",
+    "attendee": true
   },
   {
     "id": 46,
@@ -594,8 +639,9 @@
     "primaryAreaOfWork": "Urban environment",
     "organization": "BHU",
     "address": "BHU, Varanasi",
-    "phone": "9118699482",
-    "accommodationRequired": "No"
+    "phone": 9118699482,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 47,
@@ -607,8 +653,9 @@
     "primaryAreaOfWork": "Urban Ecology",
     "organization": "Banaras Hindu University",
     "address": "Department of Geography Institute of science",
-    "phone": "9926242322",
-    "accommodationRequired": "No"
+    "phone": 9926242322,
+    "accommodationRequired": "no",
+    "attendee": false
   },
   {
     "id": 48,
@@ -620,8 +667,9 @@
     "primaryAreaOfWork": "Geography",
     "organization": "IGNOU",
     "address": "Kataka, Narayanpur, Mirzapur",
-    "phone": "7668845190",
-    "accommodationRequired": "No"
+    "phone": 7668845190,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 49,
@@ -633,8 +681,9 @@
     "primaryAreaOfWork": "Urban studies",
     "organization": "Banaras Hindu University",
     "address": "Birla b hostel, Banaras Hindu University",
-    "phone": "7808202034",
-    "accommodationRequired": "No"
+    "phone": 7808202034,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 50,
@@ -646,8 +695,9 @@
     "primaryAreaOfWork": "Groundwater potential zones and management",
     "organization": "Banaras Hindu University (Geophysics Department)",
     "address": "Varanasi",
-    "phone": "7985175922",
-    "accommodationRequired": "No"
+    "phone": 7985175922,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 51,
@@ -659,8 +709,9 @@
     "primaryAreaOfWork": "Groundwater recharge potential",
     "organization": "IIT BHU",
     "address": "CV Raman Hostel",
-    "phone": "7061453767",
-    "accommodationRequired": "No"
+    "phone": 7061453767,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 52,
@@ -673,7 +724,8 @@
     "organization": "IIT BHU",
     "address": "cvr",
     "phone": "7236861994",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 53,
@@ -685,8 +737,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "IIT BHU, Varanasi",
     "address": "Susuwahi, varanasi, UP",
-    "phone": "7780804912",
-    "accommodationRequired": "No"
+    "phone": 7780804912,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 54,
@@ -698,8 +751,9 @@
     "primaryAreaOfWork": "Water",
     "organization": "Banaras Hindu University",
     "address": "Banaras Hindu University",
-    "phone": "9358215156",
-    "accommodationRequired": "No"
+    "phone": 9358215156,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 55,
@@ -711,8 +765,9 @@
     "primaryAreaOfWork": "Water and Wastewater Treatment",
     "organization": "IIT (BHU) Varanasi",
     "address": "IIT (BHU) Varanasi",
-    "phone": "8399010069",
-    "accommodationRequired": "NA"
+    "phone": 8399010069,
+    "accommodationRequired": "NA",
+    "attendee": true
   },
   {
     "id": 56,
@@ -725,7 +780,8 @@
     "organization": "Civil Eng. IIT BHU Varanasi",
     "address": "Sheer Gate BHU Varanasi",
     "phone": "6394201406",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 57,
@@ -737,21 +793,23 @@
     "primaryAreaOfWork": "DEM comparison",
     "organization": "IIT (BHU) VARANASI",
     "address": "CV RAMAN HOSTEL, IIT (BHU) VARANASI",
-    "phone": "8799770474",
-    "accommodationRequired": "No"
+    "phone": 8799770474,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 58,
     "registeredAt": "2026-06-23T16:04:04",
     "name": "Kundan Shwetank",
-    "gender": "Male",
+    "gender": "M",
     "email": "kundanshwetank.rs.apd23@iitbhu.ac.in",
     "designation": "Research scholar with expertise in Architecture, Urban Planning and Inclusive Design",
     "primaryAreaOfWork": "Inclusive Design",
     "organization": "IIT BHU Varanasi",
     "address": "IIT BHU Varanasi",
-    "phone": "7587520852",
-    "accommodationRequired": "No"
+    "phone": 7587520852,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 59,
@@ -763,8 +821,9 @@
     "primaryAreaOfWork": "Geodesy",
     "organization": "IIT BHU VARANASI",
     "address": "C. V. Raman Hostel",
-    "phone": "7080447719",
-    "accommodationRequired": "No"
+    "phone": 7080447719,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 60,
@@ -777,7 +836,8 @@
     "organization": "IIT BHU Varanasi",
     "address": "Varanasi",
     "phone": "7985991797",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 61,
@@ -789,8 +849,9 @@
     "primaryAreaOfWork": "Civil Engineering",
     "organization": "Buddha Institute of Technology",
     "address": "GIDA, Gorakhpur, Uttar Pradesh",
-    "phone": "9997900803",
-    "accommodationRequired": "Yes"
+    "phone": 9997900803,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 62,
@@ -802,21 +863,23 @@
     "primaryAreaOfWork": "Groundwater management",
     "organization": "University of Allahabad",
     "address": "114/1A Shivkuti, Prayagraj",
-    "phone": "6307238430",
-    "accommodationRequired": "No"
+    "phone": 6307238430,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 63,
     "registeredAt": "2026-06-23T19:12:45",
     "name": "SUSHMITA SINGH",
-    "gender": "Female",
+    "gender": "FEMALE",
     "email": "sushmitasingh@bhu.ac.in",
     "designation": "RESEARCH SCHOLAR",
     "primaryAreaOfWork": "WATER QUALITY USING REMOTE SENSING",
     "organization": "BANARAS HINDU UNIVERSITY",
     "address": "BANARAS HINDU UNIVERSITY",
-    "phone": "6392600751",
-    "accommodationRequired": "No"
+    "phone": 6392600751,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 64,
@@ -828,8 +891,9 @@
     "primaryAreaOfWork": "Flood vulnerability mapping",
     "organization": "Banaras Hindu University",
     "address": "Varanasi",
-    "phone": "8964085125",
-    "accommodationRequired": "No"
+    "phone": 8964085125,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 65,
@@ -841,8 +905,9 @@
     "primaryAreaOfWork": "Urbanisation and its consequencss",
     "organization": "IGNOU",
     "address": "Azamgarh",
-    "phone": "8299842271",
-    "accommodationRequired": "Yes"
+    "phone": 8299842271,
+    "accommodationRequired": "Yes",
+    "attendee": false
   },
   {
     "id": 66,
@@ -854,8 +919,9 @@
     "primaryAreaOfWork": "Climate Change",
     "organization": "Banaras Hindu University",
     "address": "Gilat Bazar Varanasi",
-    "phone": "7007225333",
-    "accommodationRequired": "No"
+    "phone": 7007225333,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 67,
@@ -867,8 +933,9 @@
     "primaryAreaOfWork": "composite material",
     "organization": "IIT BHU",
     "address": "CV Raman hostel",
-    "phone": "9782021273",
-    "accommodationRequired": "No"
+    "phone": 9782021273,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 68,
@@ -880,8 +947,9 @@
     "primaryAreaOfWork": "Hydrology and hydraulics",
     "organization": "Iit bhu",
     "address": "Varanasi Uttar Pradesh India",
-    "phone": "7985070552",
-    "accommodationRequired": "No"
+    "phone": 7985070552,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 69,
@@ -893,8 +961,9 @@
     "primaryAreaOfWork": "",
     "organization": "IIT BHU Varanasi",
     "address": "CV RAMAN HOSTEL IIT BHU",
-    "phone": "7654291621",
-    "accommodationRequired": "No"
+    "phone": 7654291621,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 70,
@@ -906,8 +975,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "IIT BHU VARANASI",
     "address": "Prof S N bose hostel iit bhu Varanasi",
-    "phone": "7679147170",
-    "accommodationRequired": "No"
+    "phone": 7679147170,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 71,
@@ -919,8 +989,9 @@
     "primaryAreaOfWork": "Wetland",
     "organization": "Forest Research Institute (FRI)",
     "address": "15/7C mehdauri badri awas yojna prayagraj",
-    "phone": "7398371117",
-    "accommodationRequired": "No"
+    "phone": 7398371117,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 72,
@@ -932,8 +1003,9 @@
     "primaryAreaOfWork": "Landslide Monitoring and Hazard Mapping using Satellite Data",
     "organization": "IIT BHU",
     "address": "Department of Mining Engineering IIT BHU VARANASI",
-    "phone": "9125648491",
-    "accommodationRequired": "No"
+    "phone": 9125648491,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 73,
@@ -945,8 +1017,9 @@
     "primaryAreaOfWork": "Remote Sensing and GIS, Hydrology, Forest Ecology, Watershed Management, Remote Sensing and GIS applications in Forest, Hydrology and Climate Change",
     "organization": "Institute of Environment and Sustainable Development, Banaras Hindu University",
     "address": "S-26/23-E, Gandhi Nagar Colony, Gandhi Chabutra, Meerapur Basahi, Varanasi",
-    "phone": "8707295902",
-    "accommodationRequired": "No"
+    "phone": 8707295902,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 74,
@@ -958,8 +1031,9 @@
     "primaryAreaOfWork": "Contaminants",
     "organization": "Institute of science, Banaras Hindu University",
     "address": "Banaras Hindu University",
-    "phone": "8600821162",
-    "accommodationRequired": "No"
+    "phone": 8600821162,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 75,
@@ -971,8 +1045,9 @@
     "primaryAreaOfWork": "Emerging contaminats",
     "organization": "BHU",
     "address": "BHU chemistry department",
-    "phone": "6264005368",
-    "accommodationRequired": "No"
+    "phone": 6264005368,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 76,
@@ -985,7 +1060,8 @@
     "organization": "Institute of Environment and Sustainable Development",
     "address": "Varanasi",
     "phone": "8127334849",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 77,
@@ -997,8 +1073,9 @@
     "primaryAreaOfWork": "Pollution monitoring",
     "organization": "Iesd",
     "address": "Iesd, BHU",
-    "phone": "9918455590",
-    "accommodationRequired": "No"
+    "phone": 9918455590,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 78,
@@ -1010,8 +1087,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "Indian Institute of Technology Jodhpur",
     "address": "Jodhpur, Rajasthan, India",
-    "phone": "8373953368",
-    "accommodationRequired": "No"
+    "phone": 8373953368,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 79,
@@ -1023,8 +1101,9 @@
     "primaryAreaOfWork": "Remote Sensing & GIS Application",
     "organization": "Aligarh Muslim University",
     "address": "Hazrat Umar Colony M I T Brahampura Muzaffarpur",
-    "phone": "9818964542",
-    "accommodationRequired": "Yes"
+    "phone": 9818964542,
+    "accommodationRequired": "yes",
+    "attendee": false
   },
   {
     "id": 80,
@@ -1036,8 +1115,9 @@
     "primaryAreaOfWork": "Climate change and Environment conservation",
     "organization": "Banaras Hindu University",
     "address": "Gilat Bazar Varanasi",
-    "phone": "7007225333",
-    "accommodationRequired": "No"
+    "phone": 7007225333,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 81,
@@ -1049,8 +1129,9 @@
     "primaryAreaOfWork": "Agriculture research",
     "organization": "Rani Lakshmi Bai Central Agricultural University Jhansi Uttar Pradesh India 284003",
     "address": "Jaipur Rajasthan 303602",
-    "phone": "8440017667",
-    "accommodationRequired": "No"
+    "phone": 8440017667,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 82,
@@ -1062,8 +1143,9 @@
     "primaryAreaOfWork": "Water Resource Management",
     "organization": "Acharya Narendra Deva University Of Agriculture And Technology, Kumarganj, Ayodhya",
     "address": "Kumarganj, Ayodhya",
-    "phone": "7355680716",
-    "accommodationRequired": "Yes"
+    "phone": 7355680716,
+    "accommodationRequired": "Yes",
+    "attendee": true
   },
   {
     "id": 83,
@@ -1075,8 +1157,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "Indian Institute of Technology Jodhpur",
     "address": "Jodhpur, Rajasthan, India",
-    "phone": "8373953368",
-    "accommodationRequired": "No"
+    "phone": 8373953368,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 84,
@@ -1088,8 +1171,9 @@
     "primaryAreaOfWork": "Civil engineering",
     "organization": "NIT KURUKSHETRA",
     "address": "Kurukshetra haryana",
-    "phone": "9508502256",
-    "accommodationRequired": "No"
+    "phone": 9508502256,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 85,
@@ -1101,8 +1185,9 @@
     "primaryAreaOfWork": "Geography/geospatial analysis",
     "organization": "Department of geography, Banaras Hindu University",
     "address": "Banaras Hindu University, varanasi",
-    "phone": "8308512287",
-    "accommodationRequired": "No"
+    "phone": 8308512287,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 86,
@@ -1114,8 +1199,9 @@
     "primaryAreaOfWork": "Hydrology",
     "organization": "Motilal Nehru National institute of technology allahabad",
     "address": "SN bose, Varanasi",
-    "phone": "8745944024",
-    "accommodationRequired": "No"
+    "phone": 8745944024,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 87,
@@ -1127,8 +1213,9 @@
     "primaryAreaOfWork": "Research coordinator",
     "organization": "Lords institute of engineering and technology",
     "address": "Hydrebad",
-    "phone": "9030956278",
-    "accommodationRequired": "No"
+    "phone": 9030956278,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 88,
@@ -1140,8 +1227,9 @@
     "primaryAreaOfWork": "Water Resources Management",
     "organization": "Aacharya Narendra Deva University of Agriculture and technology Kumarganj Ayodhya.",
     "address": "Kumarganj Ayodhya",
-    "phone": "6387838286",
-    "accommodationRequired": "Yes"
+    "phone": 6387838286,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 89,
@@ -1153,8 +1241,9 @@
     "primaryAreaOfWork": "Assessment of Water quality in the river and wastewater drains, Micropollutants",
     "organization": "Institute of Agricultural Sciences, Banaras Hindu University Varanasi",
     "address": "Room no 6 balgangadhar tilak hostel BHU Varanasi Uttar Pradesh India",
-    "phone": "6266215020",
-    "accommodationRequired": "No"
+    "phone": 6266215020,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 90,
@@ -1166,8 +1255,9 @@
     "primaryAreaOfWork": "Remote Sensing and GIS",
     "organization": "IIT BHU",
     "address": "Department of Mining Engineering, IIT BHU, Varanasi - 221005",
-    "phone": "8083505398",
-    "accommodationRequired": "No"
+    "phone": 8083505398,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 91,
@@ -1179,8 +1269,9 @@
     "primaryAreaOfWork": "River engineering",
     "organization": "IIT ISM Dhanbad",
     "address": "Dhanbad",
-    "phone": "6386135720",
-    "accommodationRequired": "No"
+    "phone": 6386135720,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 92,
@@ -1192,8 +1283,9 @@
     "primaryAreaOfWork": "Phytoremediation removal of chromium VI from waste water using Indian shot plant perform hydroponic study",
     "organization": "Institute of Environment And Sustainable Development",
     "address": "BHU",
-    "phone": "9315928514",
-    "accommodationRequired": "No"
+    "phone": 9315928514,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 93,
@@ -1205,8 +1297,9 @@
     "primaryAreaOfWork": "Geography",
     "organization": "IGNOU",
     "address": "Kataka, Narayanpur, Mirzapur",
-    "phone": "7668845190",
-    "accommodationRequired": "No"
+    "phone": 7668845190,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 94,
@@ -1218,21 +1311,23 @@
     "primaryAreaOfWork": "Waste management, Sustainable agriculture",
     "organization": "Institute of environment and sustainable development",
     "address": "Lab no 112 C IESD BHU",
-    "phone": "9559540318",
-    "accommodationRequired": "No"
+    "phone": 9559540318,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 95,
     "registeredAt": "2026-06-24T18:29:51",
     "name": "Roshni Patel",
-    "gender": "Female",
+    "gender": "female",
     "email": "roshni89101@gmail.com",
     "designation": "Student",
     "primaryAreaOfWork": "Civil engineering",
     "organization": "iiest shibpur",
     "address": "iit bhu varanashi",
-    "phone": "8910258780",
-    "accommodationRequired": "No"
+    "phone": 8910258780,
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 96,
@@ -1244,8 +1339,9 @@
     "primaryAreaOfWork": "Geotechnical",
     "organization": "Institute of seismological research",
     "address": "Gandhinagar  Gujarat",
-    "phone": "9726484993",
-    "accommodationRequired": "No"
+    "phone": 9726484993,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 97,
@@ -1257,8 +1353,9 @@
     "primaryAreaOfWork": "Pursuing MSc ( Geography)",
     "organization": "IGNOU",
     "address": "GP-L2/08 Gangapuri Colony, GateNo.5a , Kotwa Road, Phulwariya, Varanasi",
-    "phone": "9795677089",
-    "accommodationRequired": "No"
+    "phone": 9795677089,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 98,
@@ -1271,7 +1368,8 @@
     "organization": "",
     "address": "Varunapuri Colony, Phulwaria, Varanasi",
     "phone": "",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 99,
@@ -1283,8 +1381,9 @@
     "primaryAreaOfWork": "Water",
     "organization": "IESD, BHU",
     "address": "Varanasi",
-    "phone": "8853156223",
-    "accommodationRequired": "No"
+    "phone": 8853156223,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 100,
@@ -1297,7 +1396,8 @@
     "organization": "Acharya Narendra Deva University Of Agriculture And Technology, Kumarganj, Ayodhya",
     "address": "Mahamaya College of Agricultural Engineering & Technology, Ambedkar Nagar Akbarpur 224122",
     "phone": "+918400801317",
-    "accommodationRequired": "Yes"
+    "accommodationRequired": "No",
+    "attendee": true
   },
   {
     "id": 101,
@@ -1309,8 +1409,9 @@
     "primaryAreaOfWork": "Water resources & Management",
     "organization": "Acharya Narendra Deva University Of Agriculture And Technology, Kumarganj, Ayodhya",
     "address": "Kumarganj Ayodhya",
-    "phone": "9113498778",
-    "accommodationRequired": "Yes"
+    "phone": 9113498778,
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 102,
@@ -1323,7 +1424,8 @@
     "organization": "Wildlife Institute of India",
     "address": "Dehradun",
     "phone": "9531890164",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 103,
@@ -1336,7 +1438,8 @@
     "organization": "Indira Gandhi Delhi Technical University",
     "address": "DBU mansion, industrial estate, Chandpur",
     "phone": "8299022927",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 104,
@@ -1349,7 +1452,8 @@
     "organization": "Indira Gandhi Delhi Technical University for Women",
     "address": "DBU mansion",
     "phone": "8299022927",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
   },
   {
     "id": 105,
@@ -1362,6 +1466,147 @@
     "organization": "School",
     "address": "DBU mansion",
     "phone": "9005907307",
-    "accommodationRequired": "No"
+    "accommodationRequired": "No",
+    "attendee": false
+  },
+  {
+    "id": 106,
+    "registeredAt": "",
+    "name": "Devesh Tripathi",
+    "gender": "Male",
+    "email": "deveshtripathi.rs.apd24@itbhu.ac.in",
+    "designation": "PhD Student",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "APD Dept",
+    "phone": 6388828738,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 107,
+    "registeredAt": "",
+    "name": "Amit Maurya",
+    "gender": "Male",
+    "email": "amitmaurya.rs.apd23@itbhu.ac.in",
+    "designation": "Research scholar",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "APD Dept",
+    "phone": 9997629344,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 108,
+    "registeredAt": "",
+    "name": "Arvind Kumar",
+    "gender": "Male",
+    "email": "arvind.ts@itbhu.ac.in",
+    "designation": "Technical Staff",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 9304128955,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 109,
+    "registeredAt": "",
+    "name": "Chintan Jethva",
+    "gender": "Male",
+    "email": "chintanghost@gmail.com",
+    "designation": "Research Associate",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 9924018934,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 110,
+    "registeredAt": "",
+    "name": "Vivek Kumar Sen",
+    "gender": "Male",
+    "email": "vivek.pa.civ25@itbhu.ac.in",
+    "designation": "Project Assistant",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 8931903898,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 111,
+    "registeredAt": "",
+    "name": "Urvi Pankaj",
+    "gender": "Female",
+    "email": "urvi13apr@gmail.com",
+    "designation": "Msc Student",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 9454279520,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 112,
+    "registeredAt": "",
+    "name": "Kriti Nandwani",
+    "gender": "Female",
+    "email": "kriti.nandwani.apd24@itbhu.ac.in",
+    "designation": "B.Arch student",
+    "primaryAreaOfWork": "",
+    "organization": "IIT BHU",
+    "address": "APD Dept",
+    "phone": 9336601853,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 113,
+    "registeredAt": "",
+    "name": "Bhavya Agarwal",
+    "gender": "Female",
+    "email": "bhavyaagarwal1594@gmail.com",
+    "designation": "JRF",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 8765928484,
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 114,
+    "registeredAt": "",
+    "name": "Dr.Nikhilesh Singh",
+    "gender": "Male",
+    "email": "ni",
+    "designation": "",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": "",
+    "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 115,
+    "registeredAt": "",
+    "name": "Anupam Yadav",
+    "gender": "Male",
+    "email": "anupam.everywhere@gmail.com",
+    "designation": "Project Assistant",
+    "primaryAreaOfWork": "",
+    "organization": "",
+    "address": "",
+    "phone": 8924921620,
+    "accommodationRequired": "",
+    "attendee": true
   }
 ]

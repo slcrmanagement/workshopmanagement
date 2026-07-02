@@ -11,9 +11,10 @@ const TABS = {
 
 // Columns/rows are derived from the workshop's own field config, so each
 // workshop's admin tables match whatever form it actually used.
+// Attendee/Registered At are system fields (set by admin/server, not part of the form).
 function registrationColumns(ws) {
   const fields = ws.registrationFields ?? DEFAULT_REGISTRATION_FIELDS;
-  return ['#', ...fields.map((f) => f.label), 'Registered At'];
+  return ['#', ...fields.map((f) => f.label), 'Attendee', 'Registered At'];
 }
 
 function registrationWrapCols(ws) {
@@ -26,6 +27,7 @@ function registrationRow(ws) {
   return (r) => [
     r.id,
     ...fields.map((f) => r[f.key]),
+    r.attendee ? 'Yes' : 'No',
     r.registeredAt ? new Date(r.registeredAt).toLocaleString() : '',
   ];
 }

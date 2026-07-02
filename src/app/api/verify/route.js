@@ -29,6 +29,9 @@ export async function POST(request) {
     if (!match) {
       return NextResponse.json({ error: 'not found' }, { status: 404 });
     }
+    if (!match.attendee) {
+      return NextResponse.json({ error: 'not attended' }, { status: 403 });
+    }
 
     // Check feedback status for this participant
     let feedbackDone = false;

@@ -119,6 +119,11 @@ function EmailVerifyStep({ ws, onVerified }) {
         setLoading(false);
         return;
       }
+      if (res.status === 403) {
+        setError('Sorry, you have not attended the workshop, so you are not eligible to download the certificate.');
+        setLoading(false);
+        return;
+      }
       if (!res.ok) throw new Error();
 
       // Server returns {id, name, feedbackDone, certificateDownloaded}
