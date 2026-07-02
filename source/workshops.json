@@ -1,0 +1,29 @@
+[
+  {
+    "id": "scalgo-live-2026",
+    "title": "SCALGO Live Workshop 2026",
+    "shortTitle": "SCALGO Live 2026",
+    "date": "2026-06-25",
+    "displayDate": "25 June 2026",
+    "registrationDeadline": "2026-06-20",
+    "venue": "Seminar Hall, Department of Civil Engineering, IIT (BHU), Varanasi",
+    "organizer": "Smart Laboratory on Clean Rivers (SLCR)",
+    "organizerFull": "Smart Laboratory on Clean Rivers (SLCR), Department of Civil Engineering, IIT (BHU), Varanasi",
+    "description": "A one-day workshop on SCALGO Live organized by the Smart Laboratory on Clean Rivers (SLCR), Department of Civil Engineering, IIT (BHU), Varanasi. This program is intended for officials, engineers, planners, researchers, faculty members, students, and professionals working in water resources, urban planning, rural development, drainage, GIS, environment, and disaster management.",
+    "tags": [
+      "Water Resources",
+      "GIS",
+      "Urban Planning",
+      "Drainage",
+      "Environment",
+      "Disaster Management"
+    ],
+    "feedbackOpen": true,
+    "registrationEndpoint": "",
+    "feedbackEndpoint": "",
+    "dataFile": "scalgo-live-2026/participants.json",
+    "certificate": {
+      "templatePdf": "/certificate/scalgo-live-2026.pdf"
+    }
+  }
+]

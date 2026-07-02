@@ -1,19 +1,17 @@
-import { workshops, getWorkshop } from '@/config/workshops';
+import { getWorkshop } from '@/config/workshops';
 import { notFound } from 'next/navigation';
 import FeedbackClient from './FeedbackClient';
 
-export async function generateStaticParams() {
-  return workshops.map((ws) => ({ workshopId: ws.id }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
-  const ws = getWorkshop(params.workshopId);
+  const ws = await getWorkshop(params.workshopId);
   if (!ws) return {};
   return { title: `Feedback & Certificate – ${ws.shortTitle} | SLCR` };
 }
 
-export default function FeedbackPage({ params }) {
-  const ws = getWorkshop(params.workshopId);
+export default async function FeedbackPage({ params }) {
+  const ws = await getWorkshop(params.workshopId);
   if (!ws) notFound();
 
   return <FeedbackClient workshop={ws} />;

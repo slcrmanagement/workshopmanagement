@@ -1,7 +1,10 @@
-import { workshops } from '@/config/workshops';
+import { getWorkshops } from '@/config/workshops';
 import WorkshopCard from '@/components/WorkshopCard';
 
-export default function HomePage() {
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const workshops = await getWorkshops();
   return (
     <div>
       <div className="text-center mb-6 pt-2">

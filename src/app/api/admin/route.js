@@ -2,14 +2,15 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { readFeedbackFile } from '@/lib/sourceStorage';
-import { workshops, getWorkshop } from '@/config/workshops';
+import { getWorkshops, getWorkshop } from '@/config/workshops';
 
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
+    const workshops = await getWorkshops();
     const workshopId = searchParams.get('workshopId') || workshops[0]?.id;
 
-    if (!workshopId || !getWorkshop(workshopId)) {
+    if (!workshopId || !(await getWorkshop(workshopId))) {
       return NextResponse.json({ error: 'Unknown workshop' }, { status: 404 });
     }
 

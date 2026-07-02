@@ -101,3 +101,16 @@ export async function writeRegistrationsFile(workshopId, data, sha, commitMessag
   if (IS_DEV) return writeLocal(fileName, data);
   return writeGitHub(fileName, data, sha, commitMessage);
 }
+
+// Central workshop registry — admin-managed via /api/admin/workshops.
+export async function readWorkshopsFile() {
+  const fileName = 'workshops.json';
+  if (IS_DEV) return readLocal(fileName);
+  return readGitHub(fileName);
+}
+
+export async function writeWorkshopsFile(data, sha, commitMessage) {
+  const fileName = 'workshops.json';
+  if (IS_DEV) return writeLocal(fileName, data);
+  return writeGitHub(fileName, data, sha, commitMessage);
+}

@@ -84,7 +84,7 @@ export default function RegisterClient({ workshop: ws }) {
         setError(
           data.error === 'Registration closed'
             ? 'Registration has just closed. Please contact the organizing team.'
-            : 'Could not save your registration. Please try again.'
+            : data.error || 'Could not save your registration. Please try again.'
         );
         setSubmitting(false);
         return;

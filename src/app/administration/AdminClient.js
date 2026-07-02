@@ -1,7 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Users, MessageSquareText, Loader2, AlertCircle, Download, ArrowLeft, Calendar } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import {
+  Users,
+  MessageSquareText,
+  Loader2,
+  AlertCircle,
+  Download,
+  ArrowLeft,
+  Calendar,
+  Plus,
+  X,
+} from 'lucide-react';
 import { DEFAULT_REGISTRATION_FIELDS, DEFAULT_FEEDBACK_QUESTIONS } from '@/config/formDefaults';
 
 const TABS = {
@@ -73,12 +84,14 @@ function downloadCsv(filename, columns, rows, rowFn) {
 }
 
 export default function AdminClient({ workshops }) {
+  const router = useRouter();
   const [workshopId, setWorkshopId] = useState(null);
   const [tab, setTab] = useState(TABS.REGISTRATIONS);
   const [registrations, setRegistrations] = useState([]);
   const [feedback, setFeedback] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     if (!workshopId) return;
@@ -101,7 +114,28 @@ export default function AdminClient({ workshops }) {
   if (!workshopId) {
     return (
       <div className="max-w-6xl mx-auto">
-        <h2 className="section-title">Admin — Select a Workshop</h2>
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <h2 className="section-title mb-0">Admin — Select a Workshop</h2>
+          {!showAddForm && (
+            <button
+              onClick={() => setShowAddForm(true)}
+              className="btn-primary flex items-center gap-1.5 shrink-0"
+            >
+              <Plus size={14} /> Add Workshop
+            </button>
+          )}
+        </div>
+
+        {showAddForm && (
+          <AddWorkshopForm
+            onCancel={() => setShowAddForm(false)}
+            onCreated={() => {
+              setShowAddForm(false);
+              router.refresh();
+            }}
+          />
+        )}
+
         <WorkshopPicker
           workshops={workshops}
           onSelect={(id) => {
@@ -212,6 +246,312 @@ function WorkshopPicker({ workshops, onSelect }) {
         </button>
       ))}
     </div>
+  );
+}
+
+function FieldEditor({ label, fields, setFields, defaults }) {
+  const addRow = () =>
+    setFields([...fields, { key: '', label: '', type: 'text', required: false, options: '' }]);
+  const removeRow = (i) => setFields(fields.filter((_, idx) => idx !== i));
+  const updateRow = (i, patch) =>
+    setFields(fields.map((f, idx) => (idx === i ? { ...f, ...patch } : f)));
+  const resetToDefaults = () =>
+    setFields(defaults.map((f) => ({ ...f, options: (f.options || []).join(', ') })));
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <span className="label mb-0">{label}</span>
+        <button type="button" onClick={resetToDefaults} className="text-xs text-slcr-blue hover:underline">
+          Use defaults
+        </button>
+      </div>
+      <div className="space-y-2">
+        {fields.map((f, i) => (
+          <div key={i} className="flex flex-wrap gap-1.5 items-center bg-gray-50 rounded-lg p-2">
+            <input
+              className="input flex-1 min-w-[90px] text-xs py-1.5"
+              placeholder="key (e.g. name)"
+              value={f.key}
+              onChange={(e) => updateRow(i, { key: e.target.value })}
+            />
+            <input
+              className="input flex-[2] min-w-[160px] text-xs py-1.5"
+              placeholder="Label / Question"
+              value={f.label}
+              onChange={(e) => updateRow(i, { label: e.target.value })}
+            />
+            <select
+              className="input w-24 text-xs py-1.5"
+              value={f.type}
+              onChange={(e) => updateRow(i, { type: e.target.value })}
+            >
+              <option value="text">text</option>
+              <option value="email">email</option>
+              <option value="tel">tel</option>
+              <option value="textarea">textarea</option>
+              <option value="select">select</option>
+              <option value="radio">radio</option>
+            </select>
+            <input
+              className="input flex-1 min-w-[160px] text-xs py-1.5 disabled:opacity-40"
+              placeholder="options, comma separated"
+              value={f.options}
+              onChange={(e) => updateRow(i, { options: e.target.value })}
+              disabled={!['select', 'radio'].includes(f.type)}
+            />
+            <label className="flex items-center gap-1 text-[10px] text-gray-600 shrink-0">
+              <input
+                type="checkbox"
+                checked={f.required}
+                onChange={(e) => updateRow(i, { required: e.target.checked })}
+              />
+              required
+            </label>
+            <button
+              type="button"
+              onClick={() => removeRow(i)}
+              className="shrink-0 text-red-400 hover:text-red-600 p-1"
+              title="Remove"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={addRow}
+        className="mt-2 text-xs text-slcr-blue hover:underline flex items-center gap-1"
+      >
+        <Plus size={12} /> Add question
+      </button>
+    </div>
+  );
+}
+
+function AddWorkshopForm({ onCancel, onCreated }) {
+  const [values, setValues] = useState({
+    id: '',
+    title: '',
+    shortTitle: '',
+    date: '',
+    displayDate: '',
+    registrationDeadline: '',
+    venue: '',
+    organizer: '',
+    organizerFull: '',
+    description: '',
+    tags: '',
+    feedbackOpen: false,
+    registrationEndpoint: '',
+    feedbackEndpoint: '',
+    certificateTemplatePdf: '',
+  });
+  const [registrationFields, setRegistrationFields] = useState(
+    DEFAULT_REGISTRATION_FIELDS.map((f) => ({ ...f, options: (f.options || []).join(', ') }))
+  );
+  const [feedbackQuestions, setFeedbackQuestions] = useState(
+    DEFAULT_FEEDBACK_QUESTIONS.map((f) => ({ ...f, options: (f.options || []).join(', ') }))
+  );
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const set = (key) => (e) => setValues((v) => ({ ...v, [key]: e.target.value }));
+
+  const toPayloadFields = (fields) =>
+    fields
+      .filter((f) => f.key && f.label)
+      .map((f) => ({
+        key: f.key,
+        label: f.label,
+        type: f.type,
+        required: !!f.required,
+        options: ['select', 'radio'].includes(f.type)
+          ? f.options.split(',').map((o) => o.trim()).filter(Boolean)
+          : undefined,
+      }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSubmitting(true);
+    try {
+      const payload = {
+        ...values,
+        tags: values.tags.split(',').map((t) => t.trim()).filter(Boolean),
+        registrationFields: toPayloadFields(registrationFields),
+        feedbackQuestions: toPayloadFields(feedbackQuestions),
+      };
+      const res = await fetch('/api/admin/workshops', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to create workshop');
+      onCreated();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const certPlaceholder = `/certificate/${values.id || '<id>'}.pdf`;
+
+  return (
+    <form onSubmit={handleSubmit} className="card p-4 sm:p-5 mb-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <h3 className="section-title mb-0">New Workshop</h3>
+        <button type="button" onClick={onCancel} className="text-gray-400 hover:text-gray-600">
+          <X size={18} />
+        </button>
+      </div>
+
+      {error && (
+        <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-lg p-2.5 text-xs">
+          <AlertCircle size={14} className="shrink-0 mt-0.5" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="label">Workshop ID (slug)</label>
+          <input
+            className="input"
+            placeholder="e.g. scalgo-live-2027"
+            value={values.id}
+            onChange={set('id')}
+            required
+          />
+        </div>
+        <div>
+          <label className="label">Short Title</label>
+          <input className="input" value={values.shortTitle} onChange={set('shortTitle')} required />
+        </div>
+      </div>
+
+      <div>
+        <label className="label">Title</label>
+        <input className="input" value={values.title} onChange={set('title')} required />
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-3">
+        <div>
+          <label className="label">Date</label>
+          <input type="date" className="input" value={values.date} onChange={set('date')} required />
+        </div>
+        <div>
+          <label className="label">Display Date</label>
+          <input
+            className="input"
+            placeholder="e.g. 25 June 2026"
+            value={values.displayDate}
+            onChange={set('displayDate')}
+          />
+        </div>
+        <div>
+          <label className="label">Registration Deadline</label>
+          <input
+            type="date"
+            className="input"
+            value={values.registrationDeadline}
+            onChange={set('registrationDeadline')}
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="label">Venue</label>
+        <input className="input" value={values.venue} onChange={set('venue')} required />
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="label">Organizer (short)</label>
+          <input className="input" value={values.organizer} onChange={set('organizer')} />
+        </div>
+        <div>
+          <label className="label">Organizer (full)</label>
+          <input className="input" value={values.organizerFull} onChange={set('organizerFull')} />
+        </div>
+      </div>
+
+      <div>
+        <label className="label">Description</label>
+        <textarea className="input" rows={3} value={values.description} onChange={set('description')} />
+      </div>
+
+      <div>
+        <label className="label">Tags (comma separated)</label>
+        <input className="input" value={values.tags} onChange={set('tags')} />
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="label">Registration Endpoint (optional)</label>
+          <input className="input" value={values.registrationEndpoint} onChange={set('registrationEndpoint')} />
+        </div>
+        <div>
+          <label className="label">Feedback Endpoint (optional)</label>
+          <input className="input" value={values.feedbackEndpoint} onChange={set('feedbackEndpoint')} />
+        </div>
+      </div>
+
+      <label className="flex items-center gap-2 text-xs sm:text-sm text-gray-700">
+        <input
+          type="checkbox"
+          checked={values.feedbackOpen}
+          onChange={(e) => setValues((v) => ({ ...v, feedbackOpen: e.target.checked }))}
+        />
+        Feedback &amp; certificate open (enable once the workshop has taken place)
+      </label>
+
+      <div>
+        <label className="label">Certificate PDF path</label>
+        <input
+          className="input"
+          placeholder={certPlaceholder}
+          value={values.certificateTemplatePdf}
+          onChange={set('certificateTemplatePdf')}
+        />
+        <p className="text-[11px] text-gray-400 mt-1">
+          Certificates are added manually — place the PDF at{' '}
+          <code>public{values.certificateTemplatePdf || certPlaceholder}</code> yourself; this field
+          just records the path.
+        </p>
+      </div>
+
+      <FieldEditor
+        label="Registration Questions"
+        fields={registrationFields}
+        setFields={setRegistrationFields}
+        defaults={DEFAULT_REGISTRATION_FIELDS}
+      />
+
+      <FieldEditor
+        label="Feedback Questions"
+        fields={feedbackQuestions}
+        setFields={setFeedbackQuestions}
+        defaults={DEFAULT_FEEDBACK_QUESTIONS}
+      />
+
+      <div className="flex justify-end gap-2 pt-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="px-3 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm rounded-lg font-semibold border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
+        >
+          Cancel
+        </button>
+        <button type="submit" disabled={submitting} className="btn-primary flex items-center gap-1.5">
+          {submitting && <Loader2 size={14} className="animate-spin" />} Create Workshop
+        </button>
+      </div>
+    </form>
   );
 }
 

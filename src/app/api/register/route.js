@@ -12,7 +12,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid workshop' }, { status: 400 });
     }
 
-    const ws = getWorkshop(workshopId);
+    const ws = await getWorkshop(workshopId);
     if (!ws) {
       return NextResponse.json({ error: 'Workshop not found' }, { status: 404 });
     }
@@ -36,6 +36,14 @@ export async function POST(request) {
     // File is created automatically on first write — nothing to set up for a new workshop.
     const { data, sha } = await readRegistrationsFile(workshopId);
     const list = data ?? [];
+
+    const email = String(fields.email).trim().toLowerCase();
+    if (list.some((r) => String(r.email ?? '').trim().toLowerCase() === email)) {
+      return NextResponse.json(
+        { error: 'This email is already registered for this workshop' },
+        { status: 409 }
+      );
+    }
 
     const nextId = list.reduce((max, r) => Math.max(max, r.id ?? 0), 0) + 1;
 

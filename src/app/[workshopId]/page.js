@@ -1,21 +1,19 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { workshops, getWorkshop } from '@/config/workshops';
+import { getWorkshop } from '@/config/workshops';
 import { Calendar, MapPin, Building2, ClipboardList, Award, ArrowLeft } from 'lucide-react';
 import RegistrationSection from '@/components/RegistrationSection';
 
-export async function generateStaticParams() {
-  return workshops.map((ws) => ({ workshopId: ws.id }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
-  const ws = getWorkshop(params.workshopId);
+  const ws = await getWorkshop(params.workshopId);
   if (!ws) return {};
   return { title: `${ws.shortTitle} | SLCR IIT BHU` };
 }
 
-export default function WorkshopPage({ params }) {
-  const ws = getWorkshop(params.workshopId);
+export default async function WorkshopPage({ params }) {
+  const ws = await getWorkshop(params.workshopId);
   if (!ws) notFound();
 
   return (
