@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Loader2, AlertCircle, BadgeCheck } from 'lucide-react';
 import CertificatePreview from '@/components/CertificatePreview';
 
-const STEPS = { EMAIL: 'email', FEEDBACK: 'feedback', CERTIFICATE: 'certificate' };
+const STEPS = { EMAIL: 'email', FEEDBACK: 'feedback', CERTIFICATE: 'certificate', DONE: 'done' };
 
 // Questions Q3–Q8 with their exact options
 const RADIO_QUESTIONS = [
@@ -102,9 +102,15 @@ export default function FeedbackClient({ workshop: ws }) {
       {step === STEPS.EMAIL && (
         <EmailVerifyStep
           ws={ws}
-          onVerified={(p) => {
+          onVerified={(p, status) => {
             setParticipant(p);
-            setStep(STEPS.FEEDBACK);
+            if (status.certificateDownloaded) {
+              setStep(STEPS.DONE);
+            } else if (status.feedbackDone) {
+              setStep(STEPS.CERTIFICATE);
+            } else {
+              setStep(STEPS.FEEDBACK);
+            }
           }}
         />
       )}
@@ -119,6 +125,10 @@ export default function FeedbackClient({ workshop: ws }) {
 
       {step === STEPS.CERTIFICATE && participant && (
         <CertificateStep ws={ws} participant={participant} />
+      )}
+
+      {step === STEPS.DONE && participant && (
+        <AlreadyDoneStep ws={ws} participant={participant} />
       )}
     </div>
   );
@@ -149,9 +159,9 @@ function EmailVerifyStep({ ws, onVerified }) {
       }
       if (!res.ok) throw new Error();
 
-      // Server returns only {id, name} — no personal data ever sent to browser
-      const { id, name } = await res.json();
-      onVerified({ name, email: email.trim(), id });
+      // Server returns {id, name, feedbackDone, certificateDownloaded}
+      const data = await res.json();
+      onVerified({ name: data.name, email: email.trim(), id: data.id }, data);
     } catch {
       setError('Something went wrong. Please try again later.');
     }
@@ -248,26 +258,32 @@ function FeedbackStep({ ws, participant, onSubmit }) {
     setError('');
     setSubmitting(true);
 
-    const payload = {
-      workshop: ws.id,
-      name: participant.name,
-      email: participant.email,
-      ...radios,
-      mostUsefulAspect: mostUseful,
-      suggestions,
-      submittedAt: new Date().toISOString(),
-    };
-
-    if (ws.feedbackEndpoint) {
-      try {
-        await fetch(ws.feedbackEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        // Non-blocking — certificate still generates
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          workshopId: ws.id,
+          participantId: participant.id,
+          name: participant.name,
+          responses: {
+            ...radios,
+            mostUsefulAspect: mostUseful,
+            suggestions,
+          },
+        }),
+      });
+      if (res.status === 409) {
+        // Already submitted — still allow certificate download
+      } else if (!res.ok) {
+        setError('Could not save feedback. Please try again.');
+        setSubmitting(false);
+        return;
       }
+    } catch {
+      setError('Network error. Please try again.');
+      setSubmitting(false);
+      return;
     }
 
     setSubmitting(false);
@@ -374,6 +390,36 @@ function FeedbackStep({ ws, participant, onSubmit }) {
   );
 }
 
+/* ─── Already done ───────────────────────────────────────────────── */
+function AlreadyDoneStep({ ws, participant }) {
+  return (
+    <div className="card p-5 sm:p-7 text-center">
+      <div className="flex justify-center mb-4">
+        <div className="bg-slcr-blue rounded-full p-3">
+          <BadgeCheck size={32} className="text-white" />
+        </div>
+      </div>
+      <h2 className="text-base sm:text-lg font-bold text-slcr-blue mb-1">
+        Certificate Already Downloaded
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-600 mb-1">
+        Hi <span className="font-semibold">{participant.name}</span>,
+      </p>
+      <p className="text-xs sm:text-sm text-gray-500 mb-5">
+        You have already submitted your feedback and downloaded your certificate for{' '}
+        <span className="font-medium text-gray-700">{ws.title}</span>.
+        Thank you for your participation!
+      </p>
+      <Link
+        href={`/${ws.id}/`}
+        className="inline-flex items-center gap-1.5 btn-primary text-xs sm:text-sm"
+      >
+        <ArrowLeft size={13} /> Back to Workshop
+      </Link>
+    </div>
+  );
+}
+
 /* ─── Step 3: Certificate ────────────────────────────────────────── */
 function CertificateStep({ ws, participant }) {
   return (
@@ -388,7 +434,10 @@ function CertificateStep({ ws, participant }) {
         </div>
       </div>
 
-      <CertificatePreview participant={participant} cert={ws.certificate} />
+      <CertificatePreview
+        participant={participant}
+        cert={{ ...ws.certificate, workshopId: ws.id }}
+      />
     </div>
   );
 }

@@ -27,12 +27,23 @@ export default function CertificatePreview({ participant, cert }) {
     return () => { if (urlRef.current) URL.revokeObjectURL(urlRef.current); };
   }, [participant, cert]);
 
-  function handleDownload() {
+  async function handleDownload() {
     if (!blobUrl) return;
     const a = document.createElement('a');
     a.href = blobUrl;
     a.download = `Certificate_${participant.name.replace(/\s+/g, '_')}.pdf`;
     a.click();
+
+    // Record that certificate was downloaded (non-blocking)
+    fetch('/api/certificate-downloaded', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        workshopId: cert.workshopId,
+        participantId: participant.id,
+        name: participant.name,
+      }),
+    }).catch(() => {});
   }
 
   return (
