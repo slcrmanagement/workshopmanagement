@@ -1,22 +1,5 @@
 [
-  {
-    "registrationId": 30,
-    "name": "Mohd Anas Khan",
-    "feedbackDone": true,
-    "certificateDownloaded": true,
-    "submittedAt": "2026-07-02T06:19:13.232Z",
-    "responses": {
-      "expectations": "Exceeded Expectations",
-      "overallQuality": "Excellent",
-      "contentRelevance": "Highly Relevant",
-      "resourcePerson": "Excellent",
-      "sessionEffectiveness": "Highly Effective",
-      "arrangements": "Excellent",
-      "mostUsefulAspect": "ascd",
-      "suggestions": "asc"
-    },
-    "downloadedAt": "2026-07-02T06:19:16.013Z"
-  },
+  
   {
     "registrationId": 85,
     "name": "Kanojiya Chetan Vinaykumar",
