@@ -37,7 +37,7 @@
     "registrationId": 30,
     "name": "Mohd Anas Khan",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-02T06:30:47.358Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -48,6 +48,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "asxas",
       "suggestions": "xasxaxax"
-    }
+    },
+    "downloadedAt": "2026-07-02T06:46:25.808Z"
   }
 ]
