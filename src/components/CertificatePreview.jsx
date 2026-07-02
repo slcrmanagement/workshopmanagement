@@ -1,98 +1,92 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Download, Image as ImageIcon, Loader2 } from 'lucide-react';
-import {
-  generateCertificatePNG,
-  downloadCertificatePNG,
-  downloadCertificatePDF,
-  downloadCertificatePPTX,
-} from '@/lib/generateCertificate';
+import { useEffect, useState, useRef } from 'react';
+import { Download, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
-export default function CertificatePreview({ participant, cert, certNumber }) {
-  const [dataUrl, setDataUrl] = useState(null);
-  const [pdfLoading, setPdfLoading] = useState(false);
-  const [pptLoading, setPptLoading] = useState(false);
+export default function CertificatePreview({ participant, cert }) {
+  const [blobUrl, setBlobUrl] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const urlRef = useRef(null);
 
   useEffect(() => {
-    setDataUrl(generateCertificatePNG({ participant, cert, certNumber }));
-  }, [participant, cert, certNumber]);
+    async function generate() {
+      try {
+        const { generateCertificateBlob } = await import('@/lib/generateCertificate');
+        const blob = await generateCertificateBlob(cert.templatePdf, participant.name);
+        const url = URL.createObjectURL(blob);
+        urlRef.current = url;
+        setBlobUrl(url);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    generate();
+    return () => { if (urlRef.current) URL.revokeObjectURL(urlRef.current); };
+  }, [participant, cert]);
 
-  async function handlePDF() {
-    if (!dataUrl) return;
-    setPdfLoading(true);
-    try { await downloadCertificatePDF(dataUrl, participant.name); }
-    finally { setPdfLoading(false); }
-  }
-
-  async function handlePPT() {
-    setPptLoading(true);
-    try { await downloadCertificatePPTX({ participant, cert, certNumber }); }
-    finally { setPptLoading(false); }
+  function handleDownload() {
+    if (!blobUrl) return;
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = `Certificate_${participant.name.replace(/\s+/g, '_')}.pdf`;
+    a.click();
   }
 
   return (
     <div>
-      {/* Certificate image — horizontally scrollable on very small screens */}
       <div className="card overflow-hidden mb-3">
-        <div className="bg-gray-100 px-3 py-1.5 text-xs text-gray-500 font-medium no-print flex justify-between">
-          <span>Certificate Preview</span>
-          <span className="font-mono text-gray-400">{certNumber}</span>
+        <div className="bg-gray-50 px-3 py-2 text-xs text-gray-500 font-medium flex items-center gap-2 border-b border-gray-100">
+          <CheckCircle2 size={12} className="text-green-500 shrink-0" />
+          Certificate for <span className="text-gray-800 font-semibold">{participant.name}</span>
         </div>
 
-        {dataUrl ? (
-          <div className="overflow-x-auto">
-            <img
-              src={dataUrl}
-              alt="Certificate of Participation"
-              className="block w-full min-w-[300px]"
-            />
+        {loading && (
+          <div className="h-48 flex flex-col items-center justify-center gap-2 text-gray-400">
+            <Loader2 size={28} className="animate-spin text-slcr-blue" />
+            <p className="text-xs">Preparing your certificate…</p>
           </div>
-        ) : (
-          <div className="h-40 flex items-center justify-center text-gray-400">
-            <div className="text-center">
-              <ImageIcon size={32} className="mx-auto mb-2 opacity-30" />
-              <p className="text-xs">Generating…</p>
-            </div>
+        )}
+
+        {!loading && error && (
+          <div className="h-32 flex flex-col items-center justify-center gap-2 text-red-400">
+            <AlertCircle size={24} />
+            <p className="text-xs">Could not load certificate. Please try again.</p>
           </div>
+        )}
+
+        {!loading && !error && blobUrl && (
+          /* Desktop: inline PDF preview. Mobile: PDF in new tab via download button. */
+          <object
+            data={blobUrl}
+            type="application/pdf"
+            className="w-full hidden sm:block"
+            style={{ height: '420px' }}
+          >
+            <p className="p-4 text-xs text-gray-400 text-center">
+              Preview not available — use the download button below.
+            </p>
+          </object>
+        )}
+
+        {!loading && !error && (
+          <p className="sm:hidden px-3 py-3 text-xs text-gray-500 text-center">
+            Your certificate is ready. Tap below to download.
+          </p>
         )}
       </div>
 
-      {/* Download buttons — stacked on mobile, inline on sm+ */}
-      {dataUrl && (
-        <div className="flex flex-col sm:flex-row gap-2 no-print">
-          <button
-            onClick={() => downloadCertificatePNG(dataUrl, participant.name)}
-            className="btn-primary flex justify-center items-center gap-2"
-          >
-            <Download size={13} /> Download PNG
-          </button>
-
-          <button
-            onClick={handlePDF}
-            disabled={pdfLoading}
-            className="btn-gold flex justify-center items-center gap-2"
-          >
-            {pdfLoading
-              ? <><Loader2 size={13} className="animate-spin" /> Generating…</>
-              : <><Download size={13} /> Download PDF</>}
-          </button>
-
-          <button
-            onClick={handlePPT}
-            disabled={pptLoading}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 text-xs sm:text-sm rounded-lg font-semibold transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
-          >
-            {pptLoading
-              ? <><Loader2 size={13} className="animate-spin" /> Generating…</>
-              : <><Download size={13} /> Download PPT</>}
-          </button>
-        </div>
-      )}
-
-      <p className="text-xs text-gray-400 mt-2 no-print">
-        No. <span className="font-mono">{certNumber}</span>
-      </p>
+      <button
+        onClick={handleDownload}
+        disabled={loading || error || !blobUrl}
+        className="btn-primary w-full flex justify-center items-center gap-2"
+      >
+        {loading
+          ? <><Loader2 size={13} className="animate-spin" /> Preparing…</>
+          : <><Download size={13} /> Download Certificate (PDF)</>}
+      </button>
     </div>
   );
 }

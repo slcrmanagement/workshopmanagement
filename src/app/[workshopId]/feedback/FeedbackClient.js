@@ -49,7 +49,6 @@ const RADIO_QUESTIONS = [
 export default function FeedbackClient({ workshop: ws }) {
   const [step, setStep] = useState(STEPS.EMAIL);
   const [participant, setParticipant] = useState(null);
-  const [certIndex, setCertIndex] = useState(1);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -103,9 +102,8 @@ export default function FeedbackClient({ workshop: ws }) {
       {step === STEPS.EMAIL && (
         <EmailVerifyStep
           ws={ws}
-          onVerified={(p, idx) => {
+          onVerified={(p) => {
             setParticipant(p);
-            setCertIndex(idx + 1);
             setStep(STEPS.FEEDBACK);
           }}
         />
@@ -120,28 +118,13 @@ export default function FeedbackClient({ workshop: ws }) {
       )}
 
       {step === STEPS.CERTIFICATE && participant && (
-        <CertificateStep ws={ws} participant={participant} certIndex={certIndex} />
+        <CertificateStep ws={ws} participant={participant} />
       )}
     </div>
   );
 }
 
-/* ─── SHA-256 helper (Web Crypto API — browser only) ─────────────── */
-async function sha256(text) {
-  const buf = await crypto.subtle.digest(
-    'SHA-256',
-    new TextEncoder().encode(text)
-  );
-  return Array.from(new Uint8Array(buf))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-}
-
 /* ─── Step 1: Email Verification ─────────────────────────────────── */
-// participants.json contains ONLY { id, name, emailHash } — no phone,
-// address, gender, or raw email. The entered email is hashed in the
-// browser before comparison, so personal data is never exposed in the
-// network tab.
 function EmailVerifyStep({ ws, onVerified }) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -153,11 +136,11 @@ function EmailVerifyStep({ ws, onVerified }) {
     setLoading(true);
 
     try {
-      // Hash email in browser first — only the hash is sent over the network
-      const hash = await sha256(email.trim().toLowerCase());
-      const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-      // Fetch only the single file for this hash — 404 = not registered
-      const res = await fetch(`${basePath}/data/${ws.id}/hashes/${hash}.json`);
+      const res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ workshopId: ws.id, email: email.trim() }),
+      });
 
       if (res.status === 404) {
         setError('Email not found in our records. Please check and try again.');
@@ -166,9 +149,9 @@ function EmailVerifyStep({ ws, onVerified }) {
       }
       if (!res.ok) throw new Error();
 
-      // Only {id, name} comes back — no email, phone, address, or gender
+      // Server returns only {id, name} — no personal data ever sent to browser
       const { id, name } = await res.json();
-      onVerified({ name, email: email.trim(), id }, id - 1);
+      onVerified({ name, email: email.trim(), id });
     } catch {
       setError('Something went wrong. Please try again later.');
     }
@@ -392,9 +375,7 @@ function FeedbackStep({ ws, participant, onSubmit }) {
 }
 
 /* ─── Step 3: Certificate ────────────────────────────────────────── */
-function CertificateStep({ ws, participant, certIndex }) {
-  const serialNumber = `${ws.certificate.serialPrefix}-${String(certIndex).padStart(3, '0')}`;
-
+function CertificateStep({ ws, participant }) {
   return (
     <div>
       <div className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-xl p-3 mb-4 no-print">
@@ -407,11 +388,7 @@ function CertificateStep({ ws, participant, certIndex }) {
         </div>
       </div>
 
-      <CertificatePreview
-        participant={participant}
-        cert={ws.certificate}
-        certNumber={serialNumber}
-      />
+      <CertificatePreview participant={participant} cert={ws.certificate} />
     </div>
   );
 }

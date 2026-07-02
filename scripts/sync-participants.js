@@ -1,14 +1,16 @@
 /**
- * Runs automatically before every build (via "prebuild" in package.json).
+ * Runs automatically before `npm run dev` and `npm run build`.
  * Also run manually: node scripts/sync-participants.js [workshopId]
  *
- * READS (admin manages these — plain email, no hash needed):
- *   source/registrations-<workshopId>.json   ← existing / manually added participants
- *   source/website-<workshopId>.json         ← auto-collected from website form (if configured)
+ * READS  (admin edits only these — plain email, no hash):
+ *   source/registrations-<workshopId>.json
  *
- * WRITES (never edit these by hand):
- *   public/data/<workshopId>/participants.json         ← id + name + emailHash (no email)
- *   public/data/<workshopId>/hashes/<hash>.json        ← id + name only (one file per person)
+ * WRITES (never edit by hand — auto-generated):
+ *   public/data/<workshopId>/participants.json   →  id + name + emailHash only
+ *
+ * Admin workflow:
+ *   1. Add person to source/registrations-<id>.json  (name + email, nothing else required)
+ *   2. npm run dev  OR  push to GitHub — file auto-generated, no manual hash work
  */
 
 const crypto = require('crypto');
@@ -19,101 +21,54 @@ const ROOT = path.resolve(__dirname, '..');
 const SOURCE_DIR = path.join(ROOT, 'source');
 const PUBLIC_DATA = path.join(ROOT, 'public', 'data');
 
-function sha256(text) {
-  return crypto.createHash('sha256').update(text.trim().toLowerCase()).digest('hex');
-}
-
-function readJSON(filePath) {
-  if (!fs.existsSync(filePath)) return [];
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
-    console.warn(`  Warning: could not parse ${filePath}`);
-    return [];
-  }
+function sha256(email) {
+  return crypto.createHash('sha256').update(email.trim().toLowerCase()).digest('hex');
 }
 
 function processWorkshop(workshopId) {
-  // Load admin-managed registrations
-  const manual = readJSON(path.join(SOURCE_DIR, `registrations-${workshopId}.json`));
-
-  // Load website form submissions (if any have been collected)
-  const website = readJSON(path.join(SOURCE_DIR, `website-${workshopId}.json`));
-
-  // Merge — website entries get IDs continuing from manual list
-  const allEmails = new Set(manual.map((r) => r.email.trim().toLowerCase()));
-  let nextId = manual.length > 0 ? Math.max(...manual.map((r) => r.id)) + 1 : 1;
-
-  const merged = [...manual];
-  for (const r of website) {
-    const key = r.email.trim().toLowerCase();
-    if (!allEmails.has(key)) {
-      merged.push({ ...r, id: nextId++ });
-      allEmails.add(key);
-    }
-  }
-
-  if (merged.length === 0) {
-    console.log(`  skipped ${workshopId} — no registrations yet`);
+  const sourceFile = path.join(SOURCE_DIR, `registrations-${workshopId}.json`);
+  if (!fs.existsSync(sourceFile)) {
+    console.error(`  ✗ Not found: source/registrations-${workshopId}.json`);
     return;
   }
 
-  const outDir = path.join(PUBLIC_DATA, workshopId);
-  const hashDir = path.join(outDir, 'hashes');
-  fs.mkdirSync(hashDir, { recursive: true });
+  const registrations = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
 
-  // Build participants list — hashes generated here, admin never touches hashes
-  const participants = merged.map((r) => ({
+  // Generate: id + name + emailHash only — no email, phone, address, gender
+  const participants = registrations.map((r) => ({
     id: r.id,
     name: r.name,
     emailHash: sha256(r.email),
   }));
 
-  // Write participants.json (no email, no personal data)
+  const outDir = path.join(PUBLIC_DATA, workshopId);
+  fs.mkdirSync(outDir, { recursive: true });
+
   fs.writeFileSync(
     path.join(outDir, 'participants.json'),
     JSON.stringify(participants, null, 2)
   );
 
-  // Remove stale hash files (for deleted/updated entries)
-  const activeHashes = new Set(participants.map((p) => p.emailHash));
-  for (const file of fs.readdirSync(hashDir)) {
-    if (!activeHashes.has(file.replace('.json', ''))) {
-      fs.unlinkSync(path.join(hashDir, file));
-    }
-  }
-
-  // One file per person — contains ONLY id + name (no email, no hash visible to user)
-  for (const p of participants) {
-    fs.writeFileSync(
-      path.join(hashDir, `${p.emailHash}.json`),
-      JSON.stringify({ id: p.id, name: p.name })
-    );
-  }
-
-  console.log(`  ✓ ${workshopId} — ${participants.length} participant(s) synced`);
+  console.log(`  ✓ ${workshopId} — ${participants.length} participant(s)`);
 }
 
-// Determine which workshops to process
 const arg = process.argv[2];
 
 if (arg) {
   processWorkshop(arg);
 } else {
-  // Auto-detect all source files
   if (!fs.existsSync(SOURCE_DIR)) {
-    console.log('No source/ directory found — skipping participant sync');
+    console.log('source/ not found — skipping');
     process.exit(0);
   }
-  const ids = new Set(
-    fs.readdirSync(SOURCE_DIR)
-      .filter((f) => f.startsWith('registrations-') && f.endsWith('.json'))
-      .map((f) => f.replace('registrations-', '').replace('.json', ''))
-  );
-  if (ids.size === 0) {
-    console.log('No registrations found in source/ — skipping');
+  const ids = fs.readdirSync(SOURCE_DIR)
+    .filter((f) => f.startsWith('registrations-') && f.endsWith('.json'))
+    .map((f) => f.replace('registrations-', '').replace('.json', ''));
+
+  if (ids.length === 0) {
+    console.log('No registrations in source/ — skipping');
   } else {
     console.log('Syncing participants...');
-    for (const id of ids) processWorkshop(id);
+    ids.forEach(processWorkshop);
   }
 }

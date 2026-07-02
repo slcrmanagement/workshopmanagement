@@ -58,19 +58,9 @@ export const workshops = [
     dataFile: 'scalgo-live-2026/participants.json',
 
     // ── Certificate ───────────────────────────────────────────────────────
+    // PDF in public/certificate/<id>.pdf — participant's name is stamped on it
     certificate: {
-      title: 'Certificate of Participation',
-      eventName: 'SCALGO Live Workshop 2026',
-      eventDate: '25th June 2026',
-      venue: 'Department of Civil Engineering, IIT (BHU), Varanasi',
-      issuedBy: 'Smart Laboratory on Clean Rivers (SLCR)\nDepartment of Civil Engineering, IIT (BHU), Varanasi',
-      signatories: [
-        {
-          name: 'Workshop Coordinator',
-          title: 'SLCR, IIT (BHU) Varanasi',
-        },
-      ],
-      serialPrefix: 'SLCR-SCALGO26',
+      templatePdf: '/certificate/scalgo-live-2026.pdf',
     },
   },
 
