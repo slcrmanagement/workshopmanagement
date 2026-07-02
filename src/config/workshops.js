@@ -1,3 +1,5 @@
+import { DEFAULT_REGISTRATION_FIELDS, DEFAULT_FEEDBACK_QUESTIONS } from './formDefaults';
+
 /**
  * Central workshop registry.
  *
@@ -9,9 +11,12 @@
  *       - Formspree (free): create account at formspree.io → paste URL here
  *       - Google Apps Script: deploy as web app → paste URL here
  *       - Leave '' to skip (just show thank-you page, add people manually)
- *  4. Create  data/<id>/registrations.json  (empty array []) — fill manually
- *     after each registration.
- *  5. npm run build → GitHub Actions auto-deploys.
+ *  4. registrationFields / feedbackQuestions are optional — omit them to use
+ *     the shared defaults in formDefaults.js, or provide your own array to
+ *     run a different registration form / feedback survey for this workshop.
+ *  5. Registration and feedback JSON files under source/ are created
+ *     automatically on first submission — nothing to set up by hand.
+ *  6. npm run build → GitHub Actions auto-deploys.
  */
 
 export const workshops = [
@@ -56,6 +61,12 @@ export const workshops = [
     // ── Local data file ───────────────────────────────────────────────────
     // Edit this JSON file to add/remove participants.
     dataFile: 'scalgo-live-2026/participants.json',
+
+    // ── Forms ──────────────────────────────────────────────────────────────
+    // Using the shared defaults here — copy formDefaults.js's arrays and
+    // edit them per-field if a future workshop needs a different form.
+    registrationFields: DEFAULT_REGISTRATION_FIELDS,
+    feedbackQuestions: DEFAULT_FEEDBACK_QUESTIONS,
 
     // ── Certificate ───────────────────────────────────────────────────────
     // PDF in public/certificate/<id>.pdf — participant's name is stamped on it

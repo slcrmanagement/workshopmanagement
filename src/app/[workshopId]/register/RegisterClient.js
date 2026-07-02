@@ -4,25 +4,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, Loader2, AlertCircle, Lock } from 'lucide-react';
 import { isRegistrationOpen } from '@/lib/workshopUtils';
-
-const FIELDS = [
-  { key: 'name',              label: 'Name of Candidate',      type: 'text',     required: true },
-  { key: 'gender',            label: 'Gender',                  type: 'select',   required: true,
-    options: ['Male', 'Female', 'Other'] },
-  { key: 'email',             label: 'Email Address',           type: 'email',    required: true },
-  { key: 'designation',       label: 'Designation',             type: 'text',     required: true },
-  { key: 'primaryAreaOfWork', label: 'Primary Area of Work',    type: 'text',     required: false },
-  { key: 'organization',      label: 'Organization / Institute', type: 'text',    required: true },
-  { key: 'address',           label: 'Address',                 type: 'textarea', required: true },
-  { key: 'phone',             label: 'Phone / Mobile No.',      type: 'tel',      required: true },
-  { key: 'accommodation',     label: 'Accommodation Required?', type: 'radio',    required: true,
-    options: ['Yes', 'No'] },
-];
-
-const empty = Object.fromEntries(FIELDS.map((f) => [f.key, '']));
+import { DEFAULT_REGISTRATION_FIELDS } from '@/config/formDefaults';
 
 export default function RegisterClient({ workshop: ws }) {
-  const [form, setForm] = useState(empty);
+  const FIELDS = ws.registrationFields ?? DEFAULT_REGISTRATION_FIELDS;
+  const [form, setForm] = useState(() => Object.fromEntries(FIELDS.map((f) => [f.key, ''])));
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -86,23 +72,41 @@ export default function RegisterClient({ workshop: ws }) {
     setError('');
     setSubmitting(true);
 
-    const payload = {
-      ...form,
-      workshop: ws.id,
-      workshopTitle: ws.title,
-      submittedAt: new Date().toISOString(),
-    };
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ workshopId: ws.id, fields: form }),
+      });
 
-    if (ws.registrationEndpoint) {
-      try {
-        await fetch(ws.registrationEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-      } catch {
-        // Non-blocking — still show success so user knows their data was noted
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(
+          data.error === 'Registration closed'
+            ? 'Registration has just closed. Please contact the organizing team.'
+            : 'Could not save your registration. Please try again.'
+        );
+        setSubmitting(false);
+        return;
       }
+    } catch {
+      setError('Network error. Please try again.');
+      setSubmitting(false);
+      return;
+    }
+
+    // Optional external forwarding (e.g. Formspree) — non-blocking, best-effort.
+    if (ws.registrationEndpoint) {
+      fetch(ws.registrationEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          workshop: ws.id,
+          workshopTitle: ws.title,
+          submittedAt: new Date().toISOString(),
+        }),
+      }).catch(() => {});
     }
 
     setSubmitting(false);

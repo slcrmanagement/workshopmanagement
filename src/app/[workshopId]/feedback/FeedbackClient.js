@@ -4,47 +4,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, Loader2, AlertCircle, BadgeCheck } from 'lucide-react';
 import CertificatePreview from '@/components/CertificatePreview';
+import { DEFAULT_FEEDBACK_QUESTIONS } from '@/config/formDefaults';
 
 const STEPS = { EMAIL: 'email', FEEDBACK: 'feedback', CERTIFICATE: 'certificate', DONE: 'done' };
-
-// Questions Q3–Q8 with their exact options
-const RADIO_QUESTIONS = [
-  {
-    key: 'expectations',
-    label: 'To what extent did the workshop meet your expectations?',
-    options: [
-      'Exceeded Expectations',
-      'Met Expectations',
-      'Partially Met Expectations',
-      'Did Not Meet Expectations',
-    ],
-  },
-  {
-    key: 'overallQuality',
-    label: 'How would you rate the overall quality of the workshop?',
-    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
-  },
-  {
-    key: 'contentRelevance',
-    label: 'How relevant was the workshop content to your professional or academic needs?',
-    options: ['Highly Relevant', 'Relevant', 'Somewhat Relevant', 'Not Relevant'],
-  },
-  {
-    key: 'resourcePerson',
-    label: 'How would you rate the knowledge and delivery of the resource person(s)?',
-    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
-  },
-  {
-    key: 'sessionEffectiveness',
-    label: 'How effective were the presentations, discussions, and practical sessions?',
-    options: ['Highly Effective', 'Effective', 'Moderately Effective', 'Not Effective'],
-  },
-  {
-    key: 'arrangements',
-    label: 'How would you rate the workshop arrangements, including venue, time management, and coordination?',
-    options: ['Excellent', 'Good', 'Satisfactory', 'Needs Improvement'],
-  },
-];
 
 export default function FeedbackClient({ workshop: ws }) {
   const [step, setStep] = useState(STEPS.EMAIL);
@@ -240,17 +202,40 @@ function RadioQuestion({ qIndex, field, value, onChange }) {
   );
 }
 
+function TextQuestion({ qIndex, field, value, onChange }) {
+  return (
+    <div>
+      <label className="label text-xs sm:text-sm">
+        Q{qIndex}. {field.label}
+      </label>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={3}
+        required={field.required}
+        placeholder={field.placeholder ?? 'Your answer…'}
+        className="input-field resize-none text-xs sm:text-sm"
+      />
+    </div>
+  );
+}
+
 function FeedbackStep({ ws, participant, onSubmit }) {
-  const initRadios = Object.fromEntries(RADIO_QUESTIONS.map((q) => [q.key, '']));
-  const [radios, setRadios] = useState(initRadios);
-  const [mostUseful, setMostUseful] = useState('');
-  const [suggestions, setSuggestions] = useState('');
+  const questions = ws.feedbackQuestions ?? DEFAULT_FEEDBACK_QUESTIONS;
+  const radioQuestions = questions.filter((q) => q.type === 'radio');
+  const textQuestions = questions.filter((q) => q.type !== 'radio');
+
+  const [answers, setAnswers] = useState(() => Object.fromEntries(questions.map((q) => [q.key, ''])));
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
+  function set(key, val) {
+    setAnswers((prev) => ({ ...prev, [key]: val }));
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
-    const missing = RADIO_QUESTIONS.find((q) => !radios[q.key]);
+    const missing = questions.find((q) => q.required && !answers[q.key]);
     if (missing) {
       setError(`Please answer: "${missing.label}"`);
       return;
@@ -266,11 +251,7 @@ function FeedbackStep({ ws, participant, onSubmit }) {
           workshopId: ws.id,
           participantId: participant.id,
           name: participant.name,
-          responses: {
-            ...radios,
-            mostUsefulAspect: mostUseful,
-            suggestions,
-          },
+          responses: answers,
         }),
       });
       if (res.status === 409) {
@@ -328,47 +309,31 @@ function FeedbackStep({ ws, participant, onSubmit }) {
           </div>
         </div>
 
-        {/* Q3–Q8: radio questions */}
+        {/* Q3+: radio questions from the workshop's feedback config */}
         <div className="space-y-4">
-          {RADIO_QUESTIONS.map((field, i) => (
+          {radioQuestions.map((field, i) => (
             <RadioQuestion
               key={field.key}
               qIndex={i + 3}
               field={field}
-              value={radios[field.key]}
-              onChange={(v) => setRadios((prev) => ({ ...prev, [field.key]: v }))}
+              value={answers[field.key]}
+              onChange={(v) => set(field.key, v)}
             />
           ))}
         </div>
       </div>
 
-      {/* Q9 & Q10 — text answers */}
+      {/* Free-text questions */}
       <div className="card p-4 sm:p-5 space-y-4">
-        <div>
-          <label className="label text-xs sm:text-sm">
-            Q9. What was the most useful aspect of the workshop?
-          </label>
-          <textarea
-            value={mostUseful}
-            onChange={(e) => setMostUseful(e.target.value)}
-            rows={3}
-            placeholder="Describe what you found most valuable…"
-            className="input-field resize-none text-xs sm:text-sm"
+        {textQuestions.map((field, i) => (
+          <TextQuestion
+            key={field.key}
+            qIndex={radioQuestions.length + i + 3}
+            field={field}
+            value={answers[field.key]}
+            onChange={(v) => set(field.key, v)}
           />
-        </div>
-
-        <div>
-          <label className="label text-xs sm:text-sm">
-            Q10. Suggestions for improving future workshops
-          </label>
-          <textarea
-            value={suggestions}
-            onChange={(e) => setSuggestions(e.target.value)}
-            rows={3}
-            placeholder="Your suggestions…"
-            className="input-field resize-none text-xs sm:text-sm"
-          />
-        </div>
+        ))}
 
         {error && (
           <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-xs">

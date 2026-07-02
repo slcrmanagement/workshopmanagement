@@ -88,3 +88,16 @@ export async function writeFeedbackFile(workshopId, data, sha, commitMessage) {
   if (IS_DEV) return writeLocal(fileName, data);
   return writeGitHub(fileName, data, sha, commitMessage);
 }
+
+// Registrations file is auto-created on first write — no setup needed per workshop.
+export async function readRegistrationsFile(workshopId) {
+  const fileName = `registrations-${workshopId}.json`;
+  if (IS_DEV) return readLocal(fileName);
+  return readGitHub(fileName);
+}
+
+export async function writeRegistrationsFile(workshopId, data, sha, commitMessage) {
+  const fileName = `registrations-${workshopId}.json`;
+  if (IS_DEV) return writeLocal(fileName, data);
+  return writeGitHub(fileName, data, sha, commitMessage);
+}
