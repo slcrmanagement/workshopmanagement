@@ -68,5 +68,19 @@
     "phone": "9358215156",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 6,
+    "registeredAt": "2026-07-06T07:42:17.489Z",
+    "name": "Sahil Anil Karande ",
+    "gender": "Male",
+    "email": "sahilkarande.chem.2026@bhu.ac.in",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Contaminants and forensic",
+    "organization": "Institute of science, Banaras Hindu University ",
+    "address": "Aiyer hostel, Banaras Hindu University, Varanasi ",
+    "phone": "8600821162",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
