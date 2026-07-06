@@ -374,7 +374,7 @@
     "registrationId": 109,
     "name": "Chintan Jethva",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T09:57:47.998Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -385,6 +385,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "How SCALGO is useful as a responsive web-based tool.",
       "suggestions": "No"
-    }
+    },
+    "downloadedAt": "2026-07-06T09:58:01.972Z"
   }
 ]
