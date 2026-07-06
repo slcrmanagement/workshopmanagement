@@ -195,6 +195,7 @@
     ],
     "certificate": {
       "templatePdf": "/certificate/2026002.pdf"
-    }
+    },
+    "hidden": false
   }
 ]

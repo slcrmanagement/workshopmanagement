@@ -71,12 +71,12 @@ export const DEFAULT_FEEDBACK_QUESTIONS = [
     key: 'mostUsefulAspect',
     label: 'What was the most useful aspect of the workshop?',
     type: 'textarea',
-    required: false,
+    required: true,
   },
   {
     key: 'suggestions',
     label: 'Suggestions for improving future workshops',
     type: 'textarea',
-    required: false,
+    required: true,
   },
 ];

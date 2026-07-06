@@ -14,6 +14,8 @@ import {
   X,
   ToggleLeft,
   ToggleRight,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { DEFAULT_REGISTRATION_FIELDS, DEFAULT_FEEDBACK_QUESTIONS } from '@/config/formDefaults';
 
@@ -162,7 +164,10 @@ export default function AdminClient({ workshops }) {
 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <h2 className="section-title mb-0">{ws?.shortTitle ?? workshopId}</h2>
-        <FeedbackToggle ws={ws} onToggled={() => router.refresh()} />
+        <div className="flex flex-wrap items-center gap-2">
+          <HideToggle ws={ws} onToggled={() => router.refresh()} />
+          <FeedbackToggle ws={ws} onToggled={() => router.refresh()} />
+        </div>
       </div>
 
       {/* Tabs */}
@@ -243,6 +248,11 @@ function WorkshopPicker({ workshops, onSelect }) {
           <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-1">
             <Calendar size={12} />
             {ws.displayDate}
+            {ws.hidden && (
+              <span className="flex items-center gap-1 text-red-500 bg-red-50 rounded px-1.5 py-0.5 font-semibold">
+                <EyeOff size={11} /> Hidden
+              </span>
+            )}
           </div>
           <h3 className="font-bold text-slcr-blue text-sm sm:text-base">{ws.shortTitle}</h3>
           <p className="text-xs text-gray-500 mt-1 line-clamp-2">{ws.venue}</p>
@@ -602,6 +612,55 @@ function FeedbackToggle({ ws, onToggled }) {
         <ToggleLeft size={15} />
       )}
       {active ? 'Feedback Active — Deactivate' : 'Activate Feedback'}
+    </button>
+  );
+}
+
+function HideToggle({ ws, onToggled }) {
+  const [updating, setUpdating] = useState(false);
+
+  if (!ws) return null;
+  const hidden = !!ws.hidden;
+
+  const handleToggle = async () => {
+    setUpdating(true);
+    try {
+      const res = await fetch('/api/admin/workshops', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: ws.id, hidden: !hidden }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Failed to update visibility');
+      }
+      onToggled();
+    } catch (err) {
+      window.alert(err.message);
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleToggle}
+      disabled={updating}
+      title={hidden ? 'Not shown on the public portal' : 'Visible on the public portal'}
+      className={`flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-3 py-2 rounded-lg border transition-colors disabled:opacity-50 ${
+        hidden
+          ? 'bg-red-50 text-red-600 border-red-200 hover:bg-red-100'
+          : 'bg-gray-100 text-gray-500 border-gray-200 hover:bg-gray-200'
+      }`}
+    >
+      {updating ? (
+        <Loader2 size={15} className="animate-spin" />
+      ) : hidden ? (
+        <EyeOff size={15} />
+      ) : (
+        <Eye size={15} />
+      )}
+      {hidden ? 'Hidden — Unhide' : 'Hide Workshop'}
     </button>
   );
 }

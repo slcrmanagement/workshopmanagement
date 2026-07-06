@@ -70,6 +70,7 @@ export async function POST(request) {
       description: description || '',
       tags: Array.isArray(tags) ? tags.filter(Boolean) : [],
       feedbackOpen: !!feedbackOpen,
+      hidden: false,
       registrationEndpoint: registrationEndpoint || '',
       feedbackEndpoint: feedbackEndpoint || '',
       dataFile: `${id}/participants.json`,
@@ -90,11 +91,13 @@ export async function POST(request) {
   }
 }
 
-// Toggles feedback/certificate availability for a workshop — feedback stays
-// closed by default until an admin explicitly activates it here.
+// Toggles feedback/certificate availability and/or public visibility for a
+// workshop. Only the fields present in the request body are changed — feedback
+// stays closed and the workshop stays visible by default until an admin
+// explicitly flips either one here.
 export async function PATCH(request) {
   try {
-    const { id, feedbackOpen } = await request.json();
+    const { id, feedbackOpen, hidden } = await request.json();
 
     if (!id) {
       return NextResponse.json({ error: 'Missing id' }, { status: 400 });
@@ -108,12 +111,17 @@ export async function PATCH(request) {
       return NextResponse.json({ error: 'Workshop not found' }, { status: 404 });
     }
 
-    ws.feedbackOpen = !!feedbackOpen;
-    await writeWorkshopsFile(
-      list,
-      sha,
-      `${ws.feedbackOpen ? 'Activate' : 'Deactivate'} feedback: ${id}`
-    );
+    const changes = [];
+    if (feedbackOpen !== undefined) {
+      ws.feedbackOpen = !!feedbackOpen;
+      changes.push(ws.feedbackOpen ? 'activate feedback' : 'deactivate feedback');
+    }
+    if (hidden !== undefined) {
+      ws.hidden = !!hidden;
+      changes.push(ws.hidden ? 'hide' : 'unhide');
+    }
+
+    await writeWorkshopsFile(list, sha, `${changes.join(', ') || 'update'} workshop: ${id}`);
 
     return NextResponse.json({ ok: true, workshop: ws });
   } catch (e) {

@@ -4,7 +4,7 @@ import WorkshopCard from '@/components/WorkshopCard';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const workshops = await getWorkshops();
+  const workshops = (await getWorkshops()).filter((ws) => !ws.hidden);
   return (
     <div>
       <div className="text-center mb-6 pt-2">

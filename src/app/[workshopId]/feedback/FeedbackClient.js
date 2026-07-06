@@ -180,6 +180,7 @@ function RadioQuestion({ qIndex, field, value, onChange }) {
       <p className="text-xs sm:text-sm font-semibold text-gray-800 mb-2">
         <span className="text-slcr-blue mr-1">Q{qIndex}.</span>
         {field.label}
+        {field.required && <span className="text-red-500 ml-0.5">*</span>}
       </p>
       <div className="space-y-1.5">
         {field.options.map((opt) => (
@@ -212,6 +213,7 @@ function TextQuestion({ qIndex, field, value, onChange }) {
     <div>
       <label className="label text-xs sm:text-sm">
         Q{qIndex}. {field.label}
+        {field.required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
       <textarea
         value={value}
