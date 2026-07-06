@@ -196,7 +196,7 @@
     "registrationId": 54,
     "name": "Varsha Rai",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T07:02:11.808Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -207,6 +207,7 @@
       "arrangements": "Good",
       "mostUsefulAspect": "",
       "suggestions": ""
-    }
+    },
+    "downloadedAt": "2026-07-06T07:02:18.402Z"
   }
 ]
