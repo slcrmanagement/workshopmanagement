@@ -40,5 +40,19 @@
     "phone": "9142363773",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 4,
+    "registeredAt": "2026-07-06T07:35:50.202Z",
+    "name": "Shubham Yadav ",
+    "gender": "Male",
+    "email": "shubham89320@gmail.com",
+    "designation": " stundent",
+    "primaryAreaOfWork": "Water and wastewater ",
+    "organization": "Banaras hindu university ",
+    "address": "Sushwahi varanasi 221011 uttar pradesh ",
+    "phone": "8932027611",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
