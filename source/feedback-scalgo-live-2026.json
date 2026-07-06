@@ -411,7 +411,7 @@
     "registrationId": 50,
     "name": "Deeksha Mishra",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T11:26:39.063Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -422,6 +422,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "In the area of rainfall and watershed management related to surface water ",
       "suggestions": "Include interactive insides of surface and groundwater interaction in different areas using modelling "
-    }
+    },
+    "downloadedAt": "2026-07-06T11:26:45.543Z"
   }
 ]
