@@ -26,5 +26,19 @@
     "phone": "8429490800",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 3,
+    "registeredAt": "2026-07-06T07:21:48.090Z",
+    "name": "Vishal Kumar",
+    "gender": "Male",
+    "email": "vishal06062002@gmail.com",
+    "designation": "Scientific assistant",
+    "primaryAreaOfWork": "Groundwater Quality assessment ",
+    "organization": "Banaras Hindu University",
+    "address": "Nasirpur, Suswahi, Varanasi-221005",
+    "phone": "9142363773",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
