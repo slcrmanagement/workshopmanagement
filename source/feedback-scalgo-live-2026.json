@@ -245,5 +245,22 @@
       "suggestions": "Please organise more workshops related to this field."
     },
     "downloadedAt": "2026-07-06T07:04:56.153Z"
+  },
+  {
+    "registrationId": 82,
+    "name": "Dewanshu Pandey",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-06T07:27:31.037Z",
+    "responses": {
+      "expectations": "Met Expectations",
+      "overallQuality": "Excellent",
+      "contentRelevance": "Highly Relevant",
+      "resourcePerson": "Excellent",
+      "sessionEffectiveness": "Effective",
+      "arrangements": "Good",
+      "mostUsefulAspect": "I am an M.Tech (IDE) student, and I am currently working with GIS tools such as ArcGIS and QGIS. I found your seminar to be very informative, well-organized, and highly relevant to my field of study. The topics covered were directly related to my academic and research interests, making the session both useful and engaging. Thank you for sharing your valuable knowledge and practical insights.",
+      "suggestions": "Nope"
+    }
   }
 ]
