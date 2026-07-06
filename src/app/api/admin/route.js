@@ -3,9 +3,16 @@ import fs from 'fs';
 import path from 'path';
 import { readFeedbackFile } from '@/lib/sourceStorage';
 import { getWorkshops, getWorkshop } from '@/config/workshops';
+import { createClient } from '@/lib/supabase/server';
 
 export async function GET(request) {
   try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const workshops = await getWorkshops();
     const workshopId = searchParams.get('workshopId') || workshops[0]?.id;

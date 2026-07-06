@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
 import { readWorkshopsFile, writeWorkshopsFile } from '@/lib/sourceStorage';
+import { createClient } from '@/lib/supabase/server';
 
 const ID_RE = /^[a-z0-9-]+$/;
+
+async function requireAdmin() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  return user ? null : NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+}
 
 function cleanFieldList(list) {
   if (!Array.isArray(list)) return undefined;
@@ -19,6 +26,9 @@ function cleanFieldList(list) {
 
 export async function POST(request) {
   try {
+    const unauthorized = await requireAdmin();
+    if (unauthorized) return unauthorized;
+
     const body = await request.json();
     const {
       id,
@@ -97,6 +107,9 @@ export async function POST(request) {
 // explicitly flips either one here.
 export async function PATCH(request) {
   try {
+    const unauthorized = await requireAdmin();
+    if (unauthorized) return unauthorized;
+
     const { id, feedbackOpen, hidden } = await request.json();
 
     if (!id) {

@@ -16,8 +16,10 @@ import {
   ToggleRight,
   Eye,
   EyeOff,
+  LogOut,
 } from 'lucide-react';
 import { DEFAULT_REGISTRATION_FIELDS, DEFAULT_FEEDBACK_QUESTIONS } from '@/config/formDefaults';
+import { createClient } from '@/lib/supabase/client';
 
 const TABS = {
   REGISTRATIONS: 'registrations',
@@ -118,6 +120,9 @@ export default function AdminClient({ workshops }) {
   if (!workshopId) {
     return (
       <div className="max-w-6xl mx-auto">
+        <div className="flex justify-end mb-2">
+          <LogoutButton />
+        </div>
         <div className="flex items-center justify-between gap-3 mb-4">
           <h2 className="section-title mb-0">Admin — Select a Workshop</h2>
           {!showAddForm && (
@@ -155,12 +160,15 @@ export default function AdminClient({ workshops }) {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <button
-        onClick={() => setWorkshopId(null)}
-        className="inline-flex items-center gap-1 text-xs text-slcr-blue hover:underline mb-4"
-      >
-        <ArrowLeft size={13} /> All Workshops
-      </button>
+      <div className="flex items-center justify-between mb-4">
+        <button
+          onClick={() => setWorkshopId(null)}
+          className="inline-flex items-center gap-1 text-xs text-slcr-blue hover:underline"
+        >
+          <ArrowLeft size={13} /> All Workshops
+        </button>
+        <LogoutButton />
+      </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <h2 className="section-title mb-0">{ws?.shortTitle ?? workshopId}</h2>
@@ -661,6 +669,29 @@ function HideToggle({ ws, onToggled }) {
         <Eye size={15} />
       )}
       {hidden ? 'Hidden — Unhide' : 'Hide Workshop'}
+    </button>
+  );
+}
+
+function LogoutButton() {
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/administration/login');
+    router.refresh();
+  }
+
+  return (
+    <button
+      onClick={handleLogout}
+      disabled={loggingOut}
+      className="inline-flex items-center gap-1 text-xs text-slcr-blue hover:underline disabled:opacity-50"
+    >
+      <LogOut size={13} /> Log Out
     </button>
   );
 }
