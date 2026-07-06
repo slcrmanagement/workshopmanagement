@@ -110,5 +110,19 @@
     "phone": "7355249595",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 9,
+    "registeredAt": "2026-07-06T08:57:02.610Z",
+    "name": "Ravi kumar",
+    "gender": "Male",
+    "email": "raviamazingly22@gmail.com",
+    "designation": "Ph.d scholar",
+    "primaryAreaOfWork": "Aerosol and water management ",
+    "organization": "BHU",
+    "address": "Dalmia hostel bhu varanasi ",
+    "phone": "8789720384",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
