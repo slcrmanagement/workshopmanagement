@@ -178,7 +178,7 @@
     "registrationId": 89,
     "name": "Udit Baraskar",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T06:54:28.838Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -189,6 +189,7 @@
       "arrangements": "Satisfactory",
       "mostUsefulAspect": "Explanation and hands on",
       "suggestions": "Nil"
-    }
+    },
+    "downloadedAt": "2026-07-06T06:54:35.816Z"
   }
 ]
