@@ -138,5 +138,19 @@
     "phone": "7985175922",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 11,
+    "registeredAt": "2026-07-06T11:34:38.755Z",
+    "name": "Snehil",
+    "gender": "Female",
+    "email": "snehil.swce@bhu.ac.in",
+    "designation": "PhD scholar ",
+    "primaryAreaOfWork": "Soil erosion ",
+    "organization": "Institute of agricultural sciences, banaras hindu University ",
+    "address": "New PhD girls hostel,Bhu campus, lanka , varanasi ",
+    "phone": "7000881037",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
