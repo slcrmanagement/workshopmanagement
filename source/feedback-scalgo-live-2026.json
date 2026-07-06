@@ -393,7 +393,7 @@
     "registrationId": 24,
     "name": "Sarvesh kumar mishra",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T10:43:19.239Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -404,6 +404,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "Understanding about the new concept in Spatial science and application of new technology in GIS",
       "suggestions": "All was fine"
-    }
+    },
+    "downloadedAt": "2026-07-06T10:43:24.130Z"
   }
 ]
