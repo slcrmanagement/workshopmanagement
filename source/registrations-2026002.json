@@ -82,5 +82,19 @@
     "phone": "8600821162",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 7,
+    "registeredAt": "2026-07-06T07:54:22.100Z",
+    "name": "Supriya Singh ",
+    "gender": "Female",
+    "email": "supi3010@gmail.com",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Bioremediation ",
+    "organization": "IMS, BHU",
+    "address": "Village and post Tikri, Varanasi, UP, India.",
+    "phone": "8368653478",
+    "accommodationRequired": "Yes",
+    "attendee": false
   }
 ]
