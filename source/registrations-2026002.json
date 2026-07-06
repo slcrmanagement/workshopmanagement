@@ -12,5 +12,19 @@
     "phone": "6266215020",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 2,
+    "registeredAt": "2026-07-06T07:10:16.406Z",
+    "name": "Anjali yadav ",
+    "gender": "Female",
+    "email": "bhuanjali789@gmail.com",
+    "designation": "Phd scholar ",
+    "primaryAreaOfWork": "Soil and water conservation engineering ( watershed management)",
+    "organization": "Banaras Hindu University vanarasi uttar pradesh ",
+    "address": "Village satarhuli post padari lalpur block patara thsil ghatampur district kanpur nagar Uttar Pradesh pincode 209308",
+    "phone": "8429490800",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
