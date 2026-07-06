@@ -38,7 +38,7 @@
     "organizerFull": "SLCR , IIT(BHU)",
     "description": "",
     "tags": [],
-    "feedbackOpen": true,
+    "feedbackOpen": false,
     "registrationEndpoint": "",
     "feedbackEndpoint": "",
     "dataFile": "2026002/participants.json",
