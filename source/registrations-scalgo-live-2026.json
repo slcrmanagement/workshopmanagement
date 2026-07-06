@@ -403,7 +403,7 @@
     "address": "Varanasi, UP",
     "phone": "8318116207",
     "accommodationRequired": "No",
-    "attendee": false
+    "attendee": true
   },
   {
     "id": 30,
