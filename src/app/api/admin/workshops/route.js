@@ -89,3 +89,35 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
+// Toggles feedback/certificate availability for a workshop — feedback stays
+// closed by default until an admin explicitly activates it here.
+export async function PATCH(request) {
+  try {
+    const { id, feedbackOpen } = await request.json();
+
+    if (!id) {
+      return NextResponse.json({ error: 'Missing id' }, { status: 400 });
+    }
+
+    const { data, sha } = await readWorkshopsFile();
+    const list = data ?? [];
+    const ws = list.find((w) => w.id === id);
+
+    if (!ws) {
+      return NextResponse.json({ error: 'Workshop not found' }, { status: 404 });
+    }
+
+    ws.feedbackOpen = !!feedbackOpen;
+    await writeWorkshopsFile(
+      list,
+      sha,
+      `${ws.feedbackOpen ? 'Activate' : 'Deactivate'} feedback: ${id}`
+    );
+
+    return NextResponse.json({ ok: true, workshop: ws });
+  } catch (e) {
+    console.error('Update workshop error:', e);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
