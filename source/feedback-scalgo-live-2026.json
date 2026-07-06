@@ -227,5 +227,22 @@
       "suggestions": ""
     },
     "downloadedAt": "2026-07-06T07:03:23.824Z"
+  },
+  {
+    "registrationId": 40,
+    "name": "Nishant Singh",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-06T07:04:50.131Z",
+    "responses": {
+      "expectations": "Met Expectations",
+      "overallQuality": "Excellent",
+      "contentRelevance": "Highly Relevant",
+      "resourcePerson": "Excellent",
+      "sessionEffectiveness": "Highly Effective",
+      "arrangements": "Excellent",
+      "mostUsefulAspect": "Use of SCALGO LIVE and development of DSS",
+      "suggestions": "Please organise more workshops related to this field."
+    }
   }
 ]
