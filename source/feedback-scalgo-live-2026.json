@@ -459,5 +459,22 @@
       "suggestions": "future workshop can be of two or more days."
     },
     "downloadedAt": "2026-07-06T13:20:50.645Z"
+  },
+  {
+    "registrationId": 39,
+    "name": "Ashish Raj",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-06T15:13:18.100Z",
+    "responses": {
+      "expectations": "Partially Met Expectations",
+      "overallQuality": "Good",
+      "contentRelevance": "Relevant",
+      "resourcePerson": "Good",
+      "sessionEffectiveness": "Effective",
+      "arrangements": "Excellent",
+      "mostUsefulAspect": "Very helpful in water related studies ",
+      "suggestions": "I think in future  some remote Sensing based training are required."
+    }
   }
 ]
