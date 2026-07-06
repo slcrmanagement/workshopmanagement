@@ -142,7 +142,7 @@
     "registrationId": 53,
     "name": "Dr. Sourav Bhadwal",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T06:49:45.915Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -153,6 +153,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "Hands on ",
       "suggestions": ""
-    }
+    },
+    "downloadedAt": "2026-07-06T06:49:49.804Z"
   }
 ]
