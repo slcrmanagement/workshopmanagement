@@ -179,7 +179,7 @@
     "address": "Gaya, Bihar",
     "phone": "8840025254",
     "accommodationRequired": "No",
-    "attendee": false
+    "attendee": true
   },
   {
     "id": 14,
