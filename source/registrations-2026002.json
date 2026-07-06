@@ -96,5 +96,19 @@
     "phone": "8368653478",
     "accommodationRequired": "Yes",
     "attendee": false
+  },
+  {
+    "id": 8,
+    "registeredAt": "2026-07-06T08:20:02.649Z",
+    "name": "Nishant Singh ",
+    "gender": "Male",
+    "email": "nishant.ns32@gmail.com",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Groundwater estimation",
+    "organization": "Institute of Science, Banaras Hindu University ",
+    "address": "Nasirpur Susuwahi Varanasi ",
+    "phone": "7355249595",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
