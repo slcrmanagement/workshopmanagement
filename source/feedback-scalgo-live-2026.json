@@ -356,7 +356,7 @@
     "registrationId": 58,
     "name": "Kundan Shwetank",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T09:07:11.390Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -367,6 +367,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "The demo and hands-on experience ",
       "suggestions": "A Large space or auditorium for hands-on experience and lecture. "
-    }
+    },
+    "downloadedAt": "2026-07-06T09:07:16.080Z"
   }
 ]
