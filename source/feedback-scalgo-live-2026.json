@@ -446,7 +446,7 @@
     "registrationId": 27,
     "name": "Gaurav Jaiswal",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T13:20:44.051Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -457,6 +457,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "When instructor is giving tutorial to use SALGO.",
       "suggestions": "future workshop can be of two or more days."
-    }
+    },
+    "downloadedAt": "2026-07-06T13:20:50.645Z"
   }
 ]
