@@ -152,5 +152,19 @@
     "phone": "7000881037",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 12,
+    "registeredAt": "2026-07-06T15:36:52.373Z",
+    "name": "Priyanshu Yadav ",
+    "gender": "Female",
+    "email": "priyanshu15112001@gmail.com",
+    "designation": "Student ",
+    "primaryAreaOfWork": "Water ",
+    "organization": "Institute of agricultural science ",
+    "address": "Banaras Hindu University, Varanasi ",
+    "phone": "6388630050",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
