@@ -464,7 +464,7 @@
     "registrationId": 39,
     "name": "Ashish Raj",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T15:13:18.100Z",
     "responses": {
       "expectations": "Partially Met Expectations",
@@ -475,6 +475,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "Very helpful in water related studies ",
       "suggestions": "I think in future  some remote Sensing based training are required."
-    }
+    },
+    "downloadedAt": "2026-07-06T15:13:28.546Z"
   }
 ]
