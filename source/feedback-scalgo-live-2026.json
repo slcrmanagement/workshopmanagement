@@ -160,7 +160,7 @@
     "registrationId": 51,
     "name": "Yash Nayan",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T06:53:57.753Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -171,6 +171,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "",
       "suggestions": ""
-    }
+    },
+    "downloadedAt": "2026-07-06T06:54:07.172Z"
   }
 ]
