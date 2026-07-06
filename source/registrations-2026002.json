@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "registeredAt": "2026-07-06T06:56:09.637Z",
+    "name": "Udit Baraskar",
+    "gender": "Male",
+    "email": "udit1607@bhu.ac.in",
+    "designation": "Research scholar",
+    "primaryAreaOfWork": "Water quality assessment and river monitoring",
+    "organization": "Banaras Hindu University Varanasi",
+    "address": "Room no 6 BGT hostel BHU, Varanasi Uttar Pradesh India",
+    "phone": "6266215020",
+    "accommodationRequired": "No",
+    "attendee": false
+  }
+]
