@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createMiddlewareClient } from '@/lib/supabase/middleware';
 
-const PUBLIC_ADMIN_PATHS = ['/administration/login', '/administration/reset-password'];
+const PUBLIC_ADMIN_PATHS = ['/administration/login'];
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;

@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Loader2, AlertCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Loader2, AlertCircle, MailQuestion, ShieldCheck } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 const STEPS = {
   EMAIL: 'email',
   PASSWORD: 'password',
   CREATE_PASSWORD: 'create-password',
-  FORGOT_SENT: 'forgot-sent',
+  FORGOT_INFO: 'forgot-info',
 };
 
 export default function LoginClient() {
@@ -112,18 +112,11 @@ export default function LoginClient() {
     }
   }
 
-  async function handleForgotPassword() {
-    setError('');
-    setSubmitting(true);
-
-    await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/administration/reset-password`,
-    });
-
-    // Always show the same confirmation, regardless of outcome, so this
-    // action can't be used to probe which emails exist.
-    setStep(STEPS.FORGOT_SENT);
-    setSubmitting(false);
+  // No email delivery — a forgotten password can only be reset by an admin
+  // running scripts/reset-admin-password.js, which puts the account back
+  // into the "no password set" state so it goes through create-password again.
+  function handleForgotPassword() {
+    setStep(STEPS.FORGOT_INFO);
   }
 
   return (
@@ -134,14 +127,21 @@ export default function LoginClient() {
           <h1 className="section-title mb-0">Admin Login</h1>
         </div>
 
-        {step === STEPS.FORGOT_SENT ? (
+        {step === STEPS.FORGOT_INFO ? (
           <div className="text-center py-4">
-            <CheckCircle2 size={40} className="text-green-500 mx-auto mb-3" />
-            <p className="text-sm text-gray-700 mb-1">Check your inbox</p>
-            <p className="text-xs text-gray-500">
-              If <span className="font-medium">{email}</span> is a registered admin account,
-              a password reset link has been sent.
+            <MailQuestion size={40} className="text-slcr-blue mx-auto mb-3" />
+            <p className="text-sm text-gray-700 mb-1">Contact an administrator</p>
+            <p className="text-xs text-gray-500 mb-4">
+              Password resets aren&apos;t self-service. Ask an administrator to reset the
+              password for <span className="font-medium">{email}</span>, then log in again.
             </p>
+            <button
+              type="button"
+              onClick={() => setStep(STEPS.PASSWORD)}
+              className="text-xs text-slcr-blue hover:underline"
+            >
+              Back to login
+            </button>
           </div>
         ) : (
           <>
