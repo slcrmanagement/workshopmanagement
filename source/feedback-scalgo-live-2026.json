@@ -369,5 +369,22 @@
       "suggestions": "A Large space or auditorium for hands-on experience and lecture. "
     },
     "downloadedAt": "2026-07-06T09:07:16.080Z"
+  },
+  {
+    "registrationId": 109,
+    "name": "Chintan Jethva",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-06T09:57:47.998Z",
+    "responses": {
+      "expectations": "Exceeded Expectations",
+      "overallQuality": "Good",
+      "contentRelevance": "Relevant",
+      "resourcePerson": "Good",
+      "sessionEffectiveness": "Highly Effective",
+      "arrangements": "Excellent",
+      "mostUsefulAspect": "How SCALGO is useful as a responsive web-based tool.",
+      "suggestions": "No"
+    }
   }
 ]
