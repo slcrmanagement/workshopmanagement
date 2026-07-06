@@ -89,7 +89,7 @@
     "registrationId": 5,
     "name": "Ritu Raj",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T06:45:49.618Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -100,6 +100,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "",
       "suggestions": ""
-    }
+    },
+    "downloadedAt": "2026-07-06T06:45:54.198Z"
   }
 ]
