@@ -482,7 +482,7 @@
     "registrationId": 86,
     "name": "Krishna Kumar tiwari",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T15:42:07.997Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -493,6 +493,7 @@
       "arrangements": "Good",
       "mostUsefulAspect": "Live demo ",
       "suggestions": "Everything is good "
-    }
+    },
+    "downloadedAt": "2026-07-06T15:42:45.541Z"
   }
 ]
