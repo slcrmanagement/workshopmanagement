@@ -54,5 +54,19 @@
     "phone": "8932027611",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 5,
+    "registeredAt": "2026-07-06T07:41:29.441Z",
+    "name": " Varsha Rai ",
+    "gender": "Female",
+    "email": "varsharai.chem.2025@bhu.ac.in",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Water",
+    "organization": "Banaras Hindu University ",
+    "address": "Banaras Hindu University ",
+    "phone": "9358215156",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
