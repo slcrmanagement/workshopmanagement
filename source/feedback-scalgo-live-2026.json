@@ -303,7 +303,7 @@
     "registrationId": 74,
     "name": "Sahil Anil Karande",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-06T07:47:23.022Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -314,6 +314,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "Gained hands-on experience on SCALGO and learned how to use it effectively.",
       "suggestions": "NA"
-    }
+    },
+    "downloadedAt": "2026-07-06T07:47:29.884Z"
   }
 ]
