@@ -72,7 +72,7 @@
     "registrationId": 72,
     "name": "Shailesh Kumar Paswan",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-03T04:46:54.627Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -83,7 +83,8 @@
       "arrangements": "Good",
       "mostUsefulAspect": "gg",
       "suggestions": "gg"
-    }
+    },
+    "downloadedAt": "2026-07-06T10:00:55.741Z"
   },
   {
     "registrationId": 5,
