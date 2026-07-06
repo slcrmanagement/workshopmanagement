@@ -124,5 +124,19 @@
     "phone": "8789720384",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 10,
+    "registeredAt": "2026-07-06T11:21:03.098Z",
+    "name": "Deeksha Mishra ",
+    "gender": "Female",
+    "email": "deekshamishra204@gmail.com",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Groundwater potential zones ",
+    "organization": "Banaras Hindu University ",
+    "address": "Hyderabad Gate, varanasi ",
+    "phone": "7985175922",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
