@@ -517,7 +517,7 @@
     "registrationId": 29,
     "name": "Akash Tiwari",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-07T04:15:17.881Z",
     "responses": {
       "expectations": "Exceeded Expectations",
@@ -528,6 +528,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "To disseminate information about the initiatives of the Smart Laboratory on Clean River (SLCR) and demonstrate how IIT (BHU) is pioneering advancements in the field of neohydrology.",
       "suggestions": "1.\tA M2M agenda should be shared with all participants in advance to ensure they are well-informed about the event schedule and can follow the proceedings seamlessly. \n2.\tFor effective two-way online communication, the main speaker system should be connected to the computer to facilitate clear and uninterrupted audio output for virtual participants. \n3.\tAn SLCR brochure should be distributed to all participants, both in printed form during the event and via email, to effectively showcase the initiatives, achievements, and activities of the SLCR."
-    }
+    },
+    "downloadedAt": "2026-07-07T04:15:33.836Z"
   }
 ]
