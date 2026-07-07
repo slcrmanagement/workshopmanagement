@@ -166,5 +166,19 @@
     "phone": "6388630050",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 13,
+    "registeredAt": "2026-07-07T05:44:03.249Z",
+    "name": "Isha Singh ",
+    "gender": "Female",
+    "email": "isha.s2807@gmail.com",
+    "designation": "MSc Environmental science Graduate ",
+    "primaryAreaOfWork": "Research aspirant",
+    "organization": "Banaras Hindu University (BHU) Varanasi ",
+    "address": "LANE NO 1 HOUSE NO 10 VIVEKANAND PURAM COLONY CHITAIPUR VARANASI",
+    "phone": "9219398745",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
