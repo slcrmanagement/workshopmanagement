@@ -180,5 +180,19 @@
     "phone": "9219398745",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 14,
+    "registeredAt": "2026-07-07T10:11:47.076Z",
+    "name": "Piyush Singh Rathour ",
+    "gender": "Male",
+    "email": "piyushrathour95@gmail.com",
+    "designation": "Research scholar ",
+    "primaryAreaOfWork": "Hydrology ",
+    "organization": "IMS, BHU",
+    "address": "S/O: Birendra pratap singh.dewhaliya.kaimur(bhabua)\nPost- dewhaliya",
+    "phone": "9910292761",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
