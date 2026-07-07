@@ -553,7 +553,7 @@
     "registrationId": 42,
     "name": "Ravi Kumar",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-07T15:54:56.285Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -564,6 +564,7 @@
       "arrangements": "Good",
       "mostUsefulAspect": "It was the lecture delivery ",
       "suggestions": "I am interested "
-    }
+    },
+    "downloadedAt": "2026-07-07T15:55:03.411Z"
   }
 ]
