@@ -566,5 +566,22 @@
       "suggestions": "I am interested "
     },
     "downloadedAt": "2026-07-07T15:55:03.411Z"
+  },
+  {
+    "registrationId": 68,
+    "name": "Ashwin chitravanshi",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-07T17:03:43.636Z",
+    "responses": {
+      "expectations": "Met Expectations",
+      "overallQuality": "Good",
+      "contentRelevance": "Highly Relevant",
+      "resourcePerson": "Excellent",
+      "sessionEffectiveness": "Effective",
+      "arrangements": "Excellent",
+      "mostUsefulAspect": "the purpose behind the presentation of the workshop was related to hydrology and it is important aspect because of the climate change ",
+      "suggestions": "it was good actually"
+    }
   }
 ]
