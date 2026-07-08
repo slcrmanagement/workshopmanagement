@@ -194,5 +194,19 @@
     "phone": "9910292761",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 15,
+    "registeredAt": "2026-07-08T06:44:58.763Z",
+    "name": "Adarsh Kumar",
+    "gender": "Male",
+    "email": "kadarsh0712@gmail.com",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Study of Groundwater-Energy-Food nexus ",
+    "organization": "Department of Agricultural Engineering, Banaras Hindu University",
+    "address": "Bananas Hindu University, Varanasi, Uttar Pradesh, 221005",
+    "phone": "6387226949",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
