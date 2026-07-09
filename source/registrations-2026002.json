@@ -208,5 +208,19 @@
     "phone": "6387226949",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 16,
+    "registeredAt": "2026-07-09T10:31:40.519Z",
+    "name": "Astha Rai",
+    "gender": "Female",
+    "email": "aastharai99@gmail.com",
+    "designation": "PhD Scholar ",
+    "primaryAreaOfWork": "Electrochemical sensors and their theoretical studies",
+    "organization": "Department of Chemistry,Institute of Science ,BHU",
+    "address": "Chandra Colony ,Peernagar ,Ghazipur ",
+    "phone": "9473875549",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
