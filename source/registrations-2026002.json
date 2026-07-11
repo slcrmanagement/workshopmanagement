@@ -264,5 +264,19 @@
     "phone": "07408657765",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 20,
+    "registeredAt": "2026-07-11T10:02:13.494Z",
+    "name": "Deepak Kumar ",
+    "gender": "Male",
+    "email": "dpk94@bhu.ac.in",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Ground water ",
+    "organization": "Institute of Agricultural science ",
+    "address": "BGT Hostel BHU",
+    "phone": "8200680639",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
