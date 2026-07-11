@@ -250,5 +250,19 @@
     "phone": "8423284033",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 19,
+    "registeredAt": "2026-07-11T05:47:35.858Z",
+    "name": "Santosh Kumar Vishwakarma ",
+    "gender": "Male",
+    "email": "santoshkmvishwa@gmail.com",
+    "designation": "Research scholar ",
+    "primaryAreaOfWork": "Climate change ",
+    "organization": "Institute of Agricultural Sciences B.H.U Varanasi",
+    "address": "village and post hathpakad\nambedkarnagar",
+    "phone": "07408657765",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
