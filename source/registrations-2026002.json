@@ -278,5 +278,19 @@
     "phone": "8200680639",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 21,
+    "registeredAt": "2026-07-11T10:05:47.989Z",
+    "name": "PAVAN KUMAR HARODE",
+    "gender": "Male",
+    "email": "pkharode@bhu.ac.in",
+    "designation": "Research scholar ",
+    "primaryAreaOfWork": "Groundwater modeling and flood modelling ",
+    "organization": "Dept. of Agricultural Engineering, IAS, B.H.U. VARANASI U.P.",
+    "address": "Vill Kajli Post Sahangaon Teh Multai Betul",
+    "phone": "08819903973",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
