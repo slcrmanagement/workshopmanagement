@@ -236,5 +236,19 @@
     "phone": "8651374313",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 18,
+    "registeredAt": "2026-07-11T04:40:13.162Z",
+    "name": "Vedika Balraj ",
+    "gender": "Female",
+    "email": "balrajvedika@gmail.comb",
+    "designation": "Student",
+    "primaryAreaOfWork": "Remote Sensing and GIS",
+    "organization": "Banaras Hindu University ",
+    "address": "Mahadev Nagar Phase 2, Govindpur, Rohani, Varanasi, Uttar Pradesh 221108",
+    "phone": "8423284033",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
