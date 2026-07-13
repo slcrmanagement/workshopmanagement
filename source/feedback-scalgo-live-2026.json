@@ -625,7 +625,7 @@
     "registrationId": 107,
     "name": "Amit Maurya",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-13T18:12:42.446Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -636,6 +636,7 @@
       "arrangements": "Good",
       "mostUsefulAspect": "The hands-on session was very interactive and helpful. Apart from that the lecture session wre insightful.",
       "suggestions": "The seating arrangement and drinking water facilities shall be taken care of."
-    }
+    },
+    "downloadedAt": "2026-07-13T18:12:47.511Z"
   }
 ]
