@@ -292,5 +292,19 @@
     "phone": "08819903973",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 22,
+    "registeredAt": "2026-07-14T00:21:58.950Z",
+    "name": "DILEEP KUMAR VARUN ",
+    "gender": "Male",
+    "email": "dkvarunbhu88@gmail.com",
+    "designation": "Research Scholar ",
+    "primaryAreaOfWork": "Physical Education and MASLD ",
+    "organization": "IMS, BHU",
+    "address": "SARWANPUR PANDEY, BASTI, PIN-272301,UP",
+    "phone": "9984595455",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
