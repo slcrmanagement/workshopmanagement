@@ -643,7 +643,7 @@
     "registrationId": 88,
     "name": "SATENDRA KUMAR",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-14T06:56:09.965Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -654,6 +654,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "Training session was most useful for me ",
       "suggestions": "Please provide free access/login IDs for  participants who has come from outside could also undergo the software training properly by that time."
-    }
+    },
+    "downloadedAt": "2026-07-14T06:56:15.669Z"
   }
 ]
