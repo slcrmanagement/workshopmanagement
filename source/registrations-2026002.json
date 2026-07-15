@@ -306,5 +306,19 @@
     "phone": "9984595455",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 23,
+    "registeredAt": "2026-07-15T11:36:25.870Z",
+    "name": "Swapnil Pandey",
+    "gender": "Male",
+    "email": "swaapnil.pandey.geop.2025@bhu.ac.in",
+    "designation": "Research Scholar",
+    "primaryAreaOfWork": "Remote Sensing",
+    "organization": "Department of Geophysics, Institute of Science, Banaras Hindu University",
+    "address": "CPR Aiyar Hostel, BHU, Varanasi",
+    "phone": "8527785702",
+    "accommodationRequired": "Yes",
+    "attendee": false
   }
 ]
