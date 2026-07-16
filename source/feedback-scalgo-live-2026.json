@@ -661,7 +661,7 @@
     "registrationId": 108,
     "name": "Arvind Kumar",
     "feedbackDone": true,
-    "certificateDownloaded": false,
+    "certificateDownloaded": true,
     "submittedAt": "2026-07-16T05:00:12.731Z",
     "responses": {
       "expectations": "Met Expectations",
@@ -672,6 +672,7 @@
       "arrangements": "Excellent",
       "mostUsefulAspect": "The workshop provided valuable practical knowledge, improved my understanding of the subject, and enhanced my confidence in applying the techniques learned.",
       "suggestions": "The workshop was well organized. It could be further improved by including more hands-on practical sessions and allocating additional time for questions and discussions."
-    }
+    },
+    "downloadedAt": "2026-07-16T05:00:21.529Z"
   }
 ]
