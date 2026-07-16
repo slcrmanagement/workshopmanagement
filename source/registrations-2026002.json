@@ -320,5 +320,19 @@
     "phone": "8527785702",
     "accommodationRequired": "Yes",
     "attendee": false
+  },
+  {
+    "id": 24,
+    "registeredAt": "2026-07-16T18:17:20.881Z",
+    "name": "Dr. Pankaj Kumar Singh",
+    "gender": "Male",
+    "email": "pksingh.ts@itbhu.ac.in",
+    "designation": "Technical Officer ",
+    "primaryAreaOfWork": "Nanoparticles ",
+    "organization": "Department of Ceramic Engineering, Indian Institute of Technology (Banaras Hindu University)",
+    "address": "Varanasi ",
+    "phone": "8318417994",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
