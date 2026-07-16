@@ -419,20 +419,7 @@
     "accommodationRequired": "NO",
     "attendee": true
   },
-  {
-    "id": 30,
-    "registeredAt": "2026-06-23T13:29:13",
-    "name": "Gaurav Kumar ",
-    "gender": "Male",
-    "email": "gaurav.saf.civ26@itbhu.ac.in",
-    "designation": "Project Assistant",
-    "primaryAreaOfWork": "Web developer",
-    "organization": "IIT BHU Civil department",
-    "address": "Varanasi",
-    "phone": 8709393673,
-    "accommodationRequired": "NO",
-    "attendee": true
-  },
+  
   {
     "id": 31,
     "registeredAt": "2026-06-23T13:29:27",
@@ -1607,6 +1594,20 @@
     "address": "",
     "phone": "",
     "accommodationRequired": "",
+    "attendee": true
+  },
+  {
+    "id": 116,
+    "registeredAt": "2026-06-23T13:29:13",
+    "name": "Gaurav Kumar ",
+    "gender": "Male",
+    "email": "gaurav.saf.civ26@itbhu.ac.in",
+    "designation": "Project Assistant",
+    "primaryAreaOfWork": "Web developer",
+    "organization": "IIT BHU Civil department",
+    "address": "Varanasi",
+    "phone": 8709393673,
+    "accommodationRequired": "NO",
     "attendee": true
   },
   {
