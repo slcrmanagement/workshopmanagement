@@ -656,5 +656,22 @@
       "suggestions": "Please provide free access/login IDs for  participants who has come from outside could also undergo the software training properly by that time."
     },
     "downloadedAt": "2026-07-14T06:56:15.669Z"
+  },
+  {
+    "registrationId": 108,
+    "name": "Arvind Kumar",
+    "feedbackDone": true,
+    "certificateDownloaded": false,
+    "submittedAt": "2026-07-16T05:00:12.731Z",
+    "responses": {
+      "expectations": "Met Expectations",
+      "overallQuality": "Excellent",
+      "contentRelevance": "Highly Relevant",
+      "resourcePerson": "Excellent",
+      "sessionEffectiveness": "Highly Effective",
+      "arrangements": "Excellent",
+      "mostUsefulAspect": "The workshop provided valuable practical knowledge, improved my understanding of the subject, and enhanced my confidence in applying the techniques learned.",
+      "suggestions": "The workshop was well organized. It could be further improved by including more hands-on practical sessions and allocating additional time for questions and discussions."
+    }
   }
 ]
