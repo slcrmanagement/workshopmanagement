@@ -18,7 +18,7 @@
       "Environment",
       "Disaster Management"
     ],
-    "feedbackOpen": true,
+    "feedbackOpen": false,
     "registrationEndpoint": "",
     "feedbackEndpoint": "",
     "dataFile": "scalgo-live-2026/participants.json",
