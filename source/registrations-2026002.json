@@ -348,5 +348,19 @@
     "phone": "8418815764",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 26,
+    "registeredAt": "2026-07-17T13:29:56.467Z",
+    "name": "Nitish Singh ",
+    "gender": "Male",
+    "email": "nitish97275@gmail.com",
+    "designation": "Research scholar ",
+    "primaryAreaOfWork": "Hydrogeology ",
+    "organization": "Banaras Hindu University ",
+    "address": "Village  nihula,post- Nihula ",
+    "phone": "6388197275",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
