@@ -334,5 +334,19 @@
     "phone": "8318417994",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 25,
+    "registeredAt": "2026-07-17T13:29:49.378Z",
+    "name": "Raju Rai",
+    "gender": "Male",
+    "email": "drajurai@gmail.com",
+    "designation": "Research Scholar",
+    "primaryAreaOfWork": "Hydrogeology, Environmental Isotope Hydrology, Hydrogeochemistry, and Groundwater Contamination Studies.",
+    "organization": "Banaras Hindu University",
+    "address": "Department of Geology, Banaras Hindu University",
+    "phone": "8418815764",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
