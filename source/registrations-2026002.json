@@ -362,5 +362,19 @@
     "phone": "6388197275",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 27,
+    "registeredAt": "2026-07-20T06:11:51.957Z",
+    "name": "KRISHNA KUMAR SINGH",
+    "gender": "Male",
+    "email": "ks746732@gmail.com",
+    "designation": "PhD Scholar",
+    "primaryAreaOfWork": "Soil and water conservation engineering ",
+    "organization": "Institute of Agricultural Sciences, Department of Farm Engineering,Banaras Hindu University -221005",
+    "address": "Varanasi, pin code- 221005",
+    "phone": "7839757497",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
