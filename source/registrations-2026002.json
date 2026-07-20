@@ -376,5 +376,19 @@
     "phone": "7839757497",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 28,
+    "registeredAt": "2026-07-20T12:05:20.296Z",
+    "name": "Ajeet Singh ",
+    "gender": "Male",
+    "email": "ajeetsinghftp2002@gmail.com",
+    "designation": "Student ",
+    "primaryAreaOfWork": "Geophysics ",
+    "organization": "Banaras Hindu University ",
+    "address": "Hyderabad gate Varanasi 221011",
+    "phone": "7268866025",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
