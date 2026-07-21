@@ -418,5 +418,19 @@
     "phone": "08418815764",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 31,
+    "registeredAt": "2026-07-21T15:40:49.511Z",
+    "name": "Mohd Anas khan",
+    "gender": "Male",
+    "email": "ak2968028@gmail.com",
+    "designation": "Web developer ",
+    "primaryAreaOfWork": "Geospatial Artificial Intelligence (GeoAI) and Geospatial Software development ",
+    "organization": "DSS IIT BHU ",
+    "address": "Varanasi ",
+    "phone": "7080240478",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
