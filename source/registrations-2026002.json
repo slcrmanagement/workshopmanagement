@@ -390,5 +390,19 @@
     "phone": "7268866025",
     "accommodationRequired": "No",
     "attendee": false
+  },
+  {
+    "id": 29,
+    "registeredAt": "2026-07-21T13:06:55.207Z",
+    "name": "Shailesh Kumar Yadav",
+    "gender": "Male",
+    "email": "shaileshyadav.jnu@gmail.com",
+    "designation": "Post doctoral fellow ",
+    "primaryAreaOfWork": "Hydrochemistry, Isotope hydrology, Contamination ",
+    "organization": "Banaras Hindu University",
+    "address": "Department of Geology\nInstitute of Science\nBanaras Hindu University ",
+    "phone": "09868065634",
+    "accommodationRequired": "No",
+    "attendee": false
   }
 ]
